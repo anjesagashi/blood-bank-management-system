@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+html {
+  --padding-inline: 50px;
+  --max-width: 1400px;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(../../images/fonts/Roboto_Condensed-Medium.ttf);
+}
+.primaryBtn {
+  min-width: 200px;
+  color: white;
+  text-decoration: none;
+  background-color: red;
+  border-radius: 25px;
+  padding-block: 10px;
+  padding-inline: 20px;
+  text-align: center;
+}
+.primaryBtn:hover {
+  color: black;
+  background-color: white;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
