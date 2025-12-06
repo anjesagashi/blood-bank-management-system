@@ -1,0 +1,88 @@
+.footer {
+  width: 100%;
+  height: auto;
+  max-width: var(--max-width);
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-inline);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.socials {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.lifeFlowlogo {
+  width: 200px;
+  height: 100px;
+}
+.mediaIcons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.mediaIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.mediaIcon img {
+  width: 100%;
+}
+.footerSection h3,
+.footerSection h4 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footerSection ul {
+  list-style: none;
+}
+
+.footerSection ul li {
+  margin-bottom: 8px;
+}
+
+.footerSection a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.footerSection a:hover {
+  color: red;
+}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline: 20px;
+  }
+
+  .lifeFlowlogo {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mediaIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .footerSection ul li {
+    margin-bottom: 6px;
+  }
+}
