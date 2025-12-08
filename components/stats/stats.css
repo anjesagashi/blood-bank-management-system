@@ -1,0 +1,18 @@
+.statsBox {
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 15px;
+}
+.statsIcon {
+  width: 40%;
+  height: 100%;
+}
+.statsCotent {
+  width: 50%;
+}
