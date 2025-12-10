@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Group</title>
+    <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
+    <link rel="stylesheet" href="bloodDetails.css" />
+    <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
+  </head>
+  <body>
+    <section class="bloodGroupContainer">
+      <video autoplay muted loop class="bgVideo">
+        <source src="../../images/bloodCellVideo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay"></div>
+      <div class="bloodGroupBox">
+        <aside class="hero">
+          <img
+            src="../../images/home/bloodBag.png"
+            class="heroImg"
+            alt="Blood Bag"
+          />
+          <div>
+            <h1>Group not found!</h1>
+            <p></p>
+          </div>
+        </aside>
+        <aside class="info">
+          <h1 class="heading">Group not found!</h1>
+
+          <div class="donateAndReceiveContainer">
+            <img src="../../images/svg/bloodDrop.svg" alt="Blood Drop" />
+            <h3>Can donate to:</h3>
+            <p class="donate"></p>
+          </div>
+
+          <div class="donateAndReceiveContainer">
+            <img src="../../images/svg/bloodDrop.svg" alt="Blood Drop" />
+            <h3>Can receive from:</h3>
+            <p class="receive"></p>
+          </div>
+
+          <p class="description">
+            Sorry, we could not find the details for this blood group.
+          </p>
+
+          <a href="../../pages/homePage/homePage.html" class="backBtn">
+            <img src="../../images/svg/arrow_back.svg" alt="" />
+            Back
+          </a>
+        </aside>
+      </div>
+    </section>
+  </body>
+  <script src="bloodGroupArray.js"></script>
+  <script src="bloodDetails.js"></script>
+</html>

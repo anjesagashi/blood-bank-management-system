@@ -242,7 +242,7 @@ custom-stats {
 }
 .prevBtn,
 .nextBtn {
-  background: red;
+  background: #8e0e0b;
   color: white;
   border: none;
   font-size: 24px;

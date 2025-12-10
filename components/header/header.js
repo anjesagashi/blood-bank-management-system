@@ -15,9 +15,10 @@ class HeaderComponent extends HTMLElement {
         </div>
 
         <nav class="navigationBar">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Home</a></li>
+          <li><a href="../../pages/homePage/homePage.html">Home</a></li>
+          <li><a href="../../pages/aboutUsPage/aboutUsPage.html">About Us</a></li>
+          <li><a href="#">How it Works</a></li>
+          <li><a href="#">Contact</a></li>
         </nav>
 
         <div class="headerActions">
