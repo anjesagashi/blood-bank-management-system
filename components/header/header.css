@@ -94,8 +94,8 @@
   text-decoration: none;
   text-align: center;
   color: white;
-  background-color: red;
-  border-radius: 25px;
+  background-color: #8e0e0b;
+  border-radius: 15px;
 }
 .burgerMenu {
   display: none;
