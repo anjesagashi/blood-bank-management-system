@@ -3,7 +3,7 @@
   height: auto;
   max-width: var(--max-width);
   padding-inline: var(--padding-inline);
-  padding-block: var(--padding-inline);
+  padding-block: 50px;
   margin-inline: auto;
   display: flex;
   justify-content: space-between;
