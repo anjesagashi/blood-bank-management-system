@@ -1,0 +1,55 @@
+.notFoundSection {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--padding-inline);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #faf7f2;
+}
+.notFoundContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+}
+.notFoundHeading {
+  font-size: 80px;
+  text-align: center;
+}
+.notFoundSection p {
+  text-align: center;
+}
+.backToHomeButton {
+  padding: 16px;
+  background-color: #8e0e0b;
+  border: none;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+}
+@media (max-width: 1024px) {
+  .notFoundHeading {
+    font-size: 64px;
+  }
+  .notFoundContent p {
+    font-size: 15px;
+    max-width: 600px;
+  }
+}
+@media (max-width: 600px) {
+  .notFoundHeading {
+    font-size: 48px;
+  }
+  .notFoundContent p {
+    font-size: 14px;
+  }
+
+  .backToHomeButton {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+}
