@@ -1,0 +1,198 @@
+
+
+.contactSection {
+  width: 100%;
+  padding-top: 0; 
+  padding-inline: 6%;
+  padding-bottom: 6%;
+  background: #faf7f2;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: auto;
+
+}
+
+
+.sectionTitle {
+  text-align: center;
+  margin-top: 3%;
+  margin-bottom: 4%;
+}
+
+.sectionTitle h1 {
+  font-size: 38px;
+  color: #8b0000;
+  margin-bottom: 10px;
+}
+
+.sectionTitle p {
+  font-size: 16px;
+  color: #666;
+}
+
+
+.contactContainer {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+
+.contactInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+
+.infoCard {
+  background: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+
+.infoCardImg {
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  background: #fdeaea;
+  border-radius: 50%;
+}
+
+
+.infoCard h3 {
+  font-size: 16px;
+  color: #8b0000;
+  margin-bottom: 4px;
+}
+
+.infoCard p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+.map {
+  grid-column: span 2;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+  
+
+.contactForm {
+  background: #fff;
+  padding: 45px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.contactForm h2 {
+  font-size: 24px;
+  color: #8b0000;
+  margin-bottom: 25px;
+}
+
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+
+.inputIconImg {
+  /* position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.6; */
+  position: absolute;
+  top: 12px; /* lartësia që ikonës */
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.6; 
+}
+
+
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 13px 14px 13px 48px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+.inputGroup textarea {
+  /* height: 130px;
+  resize: none; */
+   width: 100%;
+  padding: 12px 12px 12px 45px; /* lart, djathtas, poshtë, majtas */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  resize: none;
+  height: 120px;
+}
+
+
+.error {
+  display: block;
+  font-size: 13px;
+  color: #c00000;
+  margin-bottom: 10px;
+}
+
+
+.contactForm button {
+  width: 100%;
+  padding: 15px;
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contactForm button:hover {
+  background: #a30000;
+}
+
+
+@media (max-width: 900px) {
+  .contactContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .contactInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .map {
+    grid-column: span 1;
+  }
+}
+
