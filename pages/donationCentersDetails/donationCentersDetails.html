@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doha Medical Emergency</title>
+
+    <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
+    <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
+    <link rel="stylesheet" href="donationCentersDetails.css" />
+
+    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/footer/footer.css" />
+
+    <script src="../../components/header/header.js"></script>
+    <script src="../../components/footer/footer.js"></script>
+  </head>
+  <body>
+    <section class="centerDetailsSection">
+      <custom-header></custom-header>
+      <div class="centerDetailsContainer">
+        <img
+          src="../../images/donationCenters/podujeva_medical_center.webp"
+          alt="Doha Medical Emergency"
+          class="centerImage"
+        />
+
+        <div class="centerDetailsContent">
+          <h1>Doha Medical Emergency</h1>
+
+          <div class="infoRow">
+            <img src="../../images/svg/pin_drop.svg" alt="location" />
+            <p>Podujeva, Kosovo</p>
+          </div>
+
+          <div class="infoRow">
+            <img src="../../images/svg/clock.svg" alt="hours" />
+            <p>Monday – Friday: 08:00 – 16:00</p>
+          </div>
+
+          <div class="infoRow">
+            <img src="../../images/svg/callPhone.svg" alt="phone" />
+            <p>+383 44 123 456</p>
+          </div>
+
+          <p class="description">
+            Doha Medical Emergency is a trusted medical center offering safe and
+            professional blood donation services. Our trained staff and modern
+            equipment ensure a secure and comfortable experience for all donors.
+          </p>
+
+          <a href="../donationForm/donationForm.html" class="donateBtn">
+            Donate Blood
+          </a>
+        </div>
+      </div>
+    </section>
+    <div class="mapWrapper">
+      <p class="mapHint">Click on the map to open directions</p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2669.7194024899413!2d21.1955389411967!3d42.89561936228086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354af0050a6baf1%3A0xe4c9f1dcc555edd4!2sEmergjenca%20e%20Qytetit!5e0!3m2!1sen!2s!4v1765794045357!5m2!1sen!2s"
+        class="locationMap"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <custom-footer></custom-footer>
+  </body>
+</html>

@@ -42,7 +42,7 @@ class FooterComponent extends HTMLElement {
           <li><a href="../../pages/homePage/homePage.html">Home</a></li>
           <li><a href="../../pages/aboutUsPage/aboutUsPage.html">About Us</a></li>
            <li><a href="../../pages/donationCenters/donationCenters.html">Donation Centers</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="../../pages/contactUs/contactUs.html">Contact</a></li>
           <li><a href="../../pages/pageNotFound/pageNotFound.html">Privacy & Policy</a></li>
         </ul>
       </div>

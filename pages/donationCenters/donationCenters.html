@@ -23,7 +23,7 @@
         <p>Find trusted medical centers where you can donate blood safely.</p>
       </div>
       <div class="centerCardWrapper">
-        <div class="card">
+        <div class="card" onclick="goToDetails()">
           <img
             src="../../images/donationCenters/podujeva_medical_center.webp"
             alt="Medical Center Image"
@@ -38,7 +38,11 @@
               <img src="../../images/svg/clock.svg" alt="Clock" />
               <p class="hours">Mon – Fri: 08:00 – 16:00</p>
             </div>
-            <a href="#" class="cardBtn">View Details</a>
+            <a
+              href="../../pages/donationCentersDetails/donationCentersDetails.html"
+              class="cardBtn"
+              >View Details</a
+            >
           </div>
         </div>
         <div class="card">
@@ -116,5 +120,6 @@
       </div>
     </section>
     <custom-footer></custom-footer>
+    <script src="../../pages/donationCenters/donationCenters.js"></script>
   </body>
 </html>

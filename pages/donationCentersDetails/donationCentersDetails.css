@@ -1,0 +1,89 @@
+.centerDetailsSection {
+  max-width: var(--max-width);
+  padding-inline: var(--padding-inline);
+  margin-inline: auto;
+  background-color: #faf7f2;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 100px;
+}
+
+.centerDetailsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.centerImage {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.centerDetailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.centerDetailsContent h1 {
+  color: #8e0e0b;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoRow img {
+  width: 20px;
+  height: 20px;
+}
+
+.description {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.donateBtn {
+  margin-top: 20px;
+  width: 200px;
+  padding: 12px;
+  text-align: center;
+  background-color: #8e0e0b;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+}
+.mapWrapper {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  position: relative;
+}
+.mapWrapper:hover .mapHint {
+  display: unset;
+}
+.mapHint {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(142, 14, 11, 0.9);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.locationMap {
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 900px) {
+  .centerDetailsContainer {
+    grid-template-columns: 1fr;
+  }
+}
