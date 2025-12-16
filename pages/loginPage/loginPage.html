@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LifeFlow - Login</title>
+    <link rel="stylesheet" href="loginPage.css" />
+    <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="formBox login">
+        <form id="loginForm" novalidate>
+          <h1>Login</h1>
+          <div class="inputBox">
+            <input type="text" id="loginUsername" placeholder="Username" />
+            <img
+              src="../../images/svg/user.svg"
+              alt="User icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="inputBox">
+            <input type="password" id="loginPassword" placeholder="Password" />
+            <img
+              src="../../images/svg/lock.svg"
+              alt="Lock icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <button type="submit" class="btn loginButton">Login</button>
+        </form>
+      </div>
+
+      <div class="formBox register">
+        <form id="registerForm" novalidate>
+          <h1>Registration</h1>
+          <div class="inputBox">
+            <input type="text" id="regUsername" placeholder="Username" />
+            <img
+              src="../../images/svg/user.svg"
+              alt="User icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="inputBox">
+            <input type="email" id="regEmail" placeholder="Email" />
+            <img
+              src="../../images/svg/email.svg"
+              alt="User icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="inputBox">
+            <input type="password" id="regPassword" placeholder="Password" />
+            <img
+              src="../../images/svg/lock.svg"
+              alt="Lock icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <button type="submit" class="btn">Register</button>
+        </form>
+      </div>
+      <div class="toggleBox">
+        <div class="togglePanel toggleLeft">
+          <h1>Hello, Welcome</h1>
+          <p>Don’t have an account?</p>
+          <button class="btn registerBtn">Register</button>
+        </div>
+        <div class="togglePanel toggleRight">
+          <h1>Welcome Back!</h1>
+          <p>Already have an account?</p>
+          <button class="btn loginBtn">Login</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="loginPage.js"></script>
+  </body>
+</html>

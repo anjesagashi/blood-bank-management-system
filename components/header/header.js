@@ -34,7 +34,7 @@ class HeaderComponent extends HTMLElement {
               class="searchIcon"
             />
           </div>
-          <a href="#" class="loginButton">Login</a>
+          <a href="../../pages/loginPage/loginPage.html" class="loginButton">Login</a>
         </div>
       </div>
     </header>
