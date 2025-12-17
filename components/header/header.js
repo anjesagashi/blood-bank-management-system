@@ -17,7 +17,7 @@ class HeaderComponent extends HTMLElement {
         <nav class="navigationBar">
           <li><a href="../../pages/homePage/homePage.html">Home</a></li>
           <li><a href="../../pages/aboutUsPage/aboutUsPage.html">About Us</a></li>
-          <li><a href="#">How it Works</a></li>
+          <li><a href="../../pages/howItWorksPage/howItWorksPage.html">How it Works</a></li>
           <li><a href="../../pages/contactUs/contactUs.html">Contact</a></li>
         </nav>
 
