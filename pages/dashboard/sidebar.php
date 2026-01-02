@@ -3,7 +3,7 @@
         <h2>Admin's Dashboard</h2>
         <ul class="sidebarLinks">
             <a href="index.php?page=users" class="<?php echo ($page == 'users') ? 'active' : ''; ?>">Users</a>
-             <a href="index.php?page=centers" class="<?php echo ($page == 'centers') ? 'active' : ''; ?>">Blood Centers</a>
+             <a href="index.php?page=donationCenters" class="<?php echo ($page == 'donationCenters') ? 'active' : ''; ?>">Donation Centers</a>
             <a href="index.php?page=donations" class="<?php echo ($page == 'donations') ? 'active' : ''; ?>">Donations</a>
             <a href="index.php?page=bloodRequests" class="<?php echo ($page == 'bloodRequests') ? 'active' : ''; ?>">Blood Requests</a>
             <a href="index.php?page=bloodInventory" class="<?php echo ($page == 'bloodInventory') ? 'active' : ''; ?>">Blood Inventory</a>
