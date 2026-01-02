@@ -1,13 +1,16 @@
-
 <style>
     .bloodCenterContainer {
         display: flex;
         flex-direction: column;
         gap: 40px;
     }
+    .headerContainer{
+        display: flex;
+       justify-content: space-between;
+    }
 </style>
 <div class="bloodCenterContainer">
-    <div style="display: flex; justify-content: space-between;">
+    <div class="headerContainer">
         <h2>Manage Blood Centers</h2>
         <button class="btnAdd" onclick="openCenterModal()">+ Add New Center</button>
     </div>
@@ -27,8 +30,8 @@
                 <td>Prishtine, Kosove</td>
                 <td>+383 44 123 456</td>
                 <td class="actionsColumn">
-                    <button class="btn" onclick="openEditCenterModal()"><img src="../../images/svg/editIcon.svg" alt="Edit"></button>
-                    <button class="btn"><img src="../../images/svg/deleteIcon.svg" alt="Delete"></button>
+                    <button class="btn" onclick="openEditCenterModal()"><img src="../images/svg/editIcon.svg" alt="Edit"></button>
+                    <button class="btn"><img src="../images/svg/deleteIcon.svg" alt="Delete"></button>
                 </td>
             </tr>
             <tr>
@@ -36,8 +39,8 @@
                 <td>Prishtine, Kosove</td>
                 <td>+383 44 123 456</td>
                 <td class="actionsColumn">
-                    <button class="btn" onclick="openEditCenterModal()"><img src="../../images/svg/editIcon.svg" alt="Edit"></button>
-                    <button class="btn"><img src="../../images/svg/deleteIcon.svg" alt="Delete"></button>
+                    <button class="btn" onclick="openEditCenterModal()"><img src="../images/svg/editIcon.svg" alt="Edit"></button>
+                    <button class="btn"><img src="../images/svg/deleteIcon.svg" alt="Delete"></button>
                 </td>
             </tr>
         </tbody>
@@ -48,7 +51,7 @@
     <div class="modalContent">
         <div class="modalHeader">
             <h3 id="modalTitle">Add New Blood Center</h3>
-            <img src="../../images/svg/closeIcon.svg" class="closeBtn" onclick="closeCenterModal()" alt="Close Icon">
+            <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeCenterModal()" alt="Close Icon">
         </div>
         <form id="centerForm" novalidate>
             <div class="formGrid">
@@ -89,7 +92,7 @@
     <div class="modalContent">
         <div class="modalHeader">
             <h3>Edit Blood Center</h3>
-            <img src="../../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditCenterModal()" alt="Close Icon">
+            <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditCenterModal()" alt="Close Icon">
         </div>
         <form id="editCenterForm" novalidate>
             <input type="hidden" id="edit_id">

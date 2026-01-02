@@ -6,10 +6,10 @@ $page = $_GET['page'] ?? 'users';
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-     <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
+     <link rel="icon" type="image/x-icon" href="../images/lifeFlow.png" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styledTables.css">
-    <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
+    <link rel="stylesheet" href="../components/globalCSS/globalCSS.css" />
 </head>
 <body>
 

@@ -43,8 +43,8 @@
                 <td>NULL</td>
                 <td>+383 44 111 222</td>
                 <td class="actionsColumn">
-                    <button class="btn" onclick="openEditModal()"><img src="../../images/svg/editIcon.svg" alt="Edit"></button>
-                    <button class="btn"><img src="../../images/svg/deleteIcon.svg" alt="Delete"></button>
+                    <button class="btn" onclick="openEditModal()"><img src="../images/svg/editIcon.svg" alt="Edit"></button>
+                    <button class="btn"><img src="../images/svg/deleteIcon.svg" alt="Delete"></button>
                 </td>
             </tr>
             <tr>
@@ -55,8 +55,8 @@
                 <td>AB</td>
                 <td>+383 44 111 222</td>
                 <td class="actionsColumn">
-                    <button class="btn" onclick="openEditModal()"><img src="../../images/svg/editIcon.svg" alt="Edit"></button>
-                    <button class="btn"><img src="../../images/svg/deleteIcon.svg" alt="Delete"></button>
+                    <button class="btn" onclick="openEditModal()"><img src="../images/svg/editIcon.svg" alt="Edit"></button>
+                    <button class="btn"><img src="../images/svg/deleteIcon.svg" alt="Delete"></button>
                 </td>
             </tr>
         </tbody>
@@ -68,7 +68,7 @@
     <div class="modalContent">
         <div class="modalHeader">
             <h3 id="modalTitle">Add New User</h3>
-            <img src="../../images/svg/closeIcon.svg" class="closeBtn" onclick="closeUserModal()" alt="Close">
+            <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeUserModal()" alt="Close">
         </div>
         <form id="userForm" novalidate>
             <div class="formGrid">
@@ -136,7 +136,7 @@
     <div class="modalContent">
         <div class="modalHeader">
             <h3>Edit User Details</h3>
-            <img src="../../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditModal()" alt="Close">
+            <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditModal()" alt="Close">
         </div>
         <form id="editUserForm" novalidate>
             <input type="hidden" id="editUserId">

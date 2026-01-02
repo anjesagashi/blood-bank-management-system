@@ -12,7 +12,7 @@
     </div>
 
     <a href="index.php?page=profile" class="profileContainer">
-        <img src="../../images/profilePic.png" class="profilePic" alt="Profile Image">
+        <img src="../images/profilePic.png" class="profilePic" alt="Profile Image">
         <div class="adminInfo">
             <h5>Profile</h5>
             <p>admin@exmple.com</p>
