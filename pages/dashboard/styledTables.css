@@ -1,0 +1,60 @@
+.btnAdd {
+  background-color: #6d1417;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(109, 20, 23, 0.2);
+}
+.btnAdd:hover {
+  background-color: #8b1a1d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(109, 20, 23, 0.3);
+}
+
+.styledTable {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.styledTable thead {
+  border-radius: 10px;
+}
+.styledTable thead tr {
+  background-color: #6d1417;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styledTable th,
+.styledTable td {
+  padding: 12px 15px;
+}
+.styledTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.styledTable tbody tr:hover {
+  background-color: #e4e4e4;
+}
+.actionsColumn {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn img {
+  width: 20px;
+  height: 20px;
+}
