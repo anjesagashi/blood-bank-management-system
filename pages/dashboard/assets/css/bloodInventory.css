@@ -1,0 +1,63 @@
+.inventoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.inventoryStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.invStatCard {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-bottom: 4px solid #6d1417;
+}
+
+.invStatCard.warning {
+  border-bottom-color: #e74c3c;
+}
+.invStatCard.info {
+  border-bottom-color: #3498db;
+}
+
+.invStatCard h4 {
+  margin: 0;
+  color: #666;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.invStatCard p {
+  margin: 10px 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.invStatCard p span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #999;
+}
+
+.inlineSelect,
+.inlineInput {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.inlineSelect {
+  background: #6d1417;
+  color: white;
+  font-weight: bold;
+}
+
+.inlineInput {
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,0 +1,37 @@
+.bloodRequestContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.progressContainer {
+  background: #f0f0f0;
+  border-radius: 10px;
+  height: 15px;
+  width: 100%;
+}
+.progressBar {
+  background: #6d1417;
+  height: 100%;
+  width: 40%;
+  border-radius: 10px;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  line-height: 15px;
+}
+.urgencyHigh {
+  color: #e74c3c;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
