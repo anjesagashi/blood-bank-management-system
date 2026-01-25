@@ -1,5 +1,11 @@
 <?php
-$page = $_GET['page'] ?? 'users';
+if (!isset($_GET['page'])) {
+    // 2. E ridrejtojmë browserin që ta shtojë ?page=donors
+    header("Location: index.php?page=donors");
+    exit();
+}
+
+$page = $_GET['page'];
 ?>
 <!DOCTYPE html>
 <html lang="sq">

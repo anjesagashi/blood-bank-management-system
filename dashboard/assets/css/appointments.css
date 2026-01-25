@@ -1,0 +1,30 @@
+.appointmentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.statusSelect {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  width: 180px;
+}
+.bloodType {
+  background: #6d1417;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 35px;
+  text-align: center;
+}

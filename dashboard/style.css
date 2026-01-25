@@ -88,7 +88,6 @@
   margin: 5% auto;
   width: 50%;
   border-radius: 8px;
-  overflow: hidden;
 }
 .modalHeader {
   background: #6d1417;
@@ -108,6 +107,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .fullWidth {
@@ -133,7 +133,6 @@
   padding: 15px 20px;
   text-align: right;
 }
-
 .btnCancel {
   background: #ccc;
   border: none;

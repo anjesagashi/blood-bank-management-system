@@ -1,0 +1,67 @@
+.requestContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.formCard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid #6d1417;
+}
+
+.formRow {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+}
+
+.formGroup select,
+.formGroup input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.formGroup select:focus,
+.formGroup input:focus {
+  border-color: #6d1417;
+}
+
+.btnSubmit {
+  background-color: #6d1417;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btnSubmit:hover {
+  background-color: #8b1a1d;
+  transform: translateY(-2px);
+}
+
+.urgencySelect option[value="high"] {
+  color: #c0392b;
+  font-weight: bold;
+}

@@ -1,0 +1,215 @@
+<?php 
+class User {
+    private $conn;
+    private $users_table = 'users';
+    private $donors_table = 'donors';
+    private $centers_table = 'blood_centers';
+
+    public function __construct($db) {
+        $this->conn = $db;
+    }
+
+    public function registerDonors($uName, $email, $pass, $role, $fName, $lName, $bDate, $bType) {
+        $query1 = "INSERT INTO {$this->users_table} (username, email, password, role_id) 
+                   VALUES (:username, :email, :password, :role)";
+        $stmt1 = $this->conn->prepare($query1);
+        $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+        $stmt1->execute([
+            ':username' => $uName,
+            ':email'    => $email,
+            ':password' => $hashedPass,
+            ':role'     => $role
+        ]);
+
+        $userId = $this->conn->lastInsertId();
+
+        $query2 = "INSERT INTO {$this->donors_table} (id, first_name, last_name, birthdate, blood_group_id) 
+                   VALUES (:id, :fname, :lname, :bdate, :btype)";
+        $stmt2 = $this->conn->prepare($query2);
+        
+        return $stmt2->execute([
+            ':id'    => $userId, 
+            ':fname' => $fName,
+            ':lname' => $lName,
+            ':bdate' => $bDate,
+            ':btype' => $bType
+        ]);
+    }
+
+    public function registerBloodCenter($username, $email, $password, $role, $name, $city, $phone, $desc, $map, $img) {
+    $query1 = "INSERT INTO {$this->users_table} (username, email, password, role_id) 
+                   VALUES (:username, :email, :password, :role)";
+        $stmt1 = $this->conn->prepare($query1);
+        $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+        $stmt1->execute([
+            ':username' => $username,
+            ':email'    => $email,
+            ':password' => $hashedPass,
+            ':role'     => $role
+        ]);
+         $userId = $this->conn->lastInsertId();
+         $query2 = "INSERT INTO {$this->centers_table} (id, center_name, img_src, city, phone_number,description,map_link) 
+                   VALUES (:id, :center_name, :img_src, :city, :phone_number, :description, :map_link)";
+        $stmt2 = $this->conn->prepare($query2);
+         return $stmt2->execute([
+            ':id'    => $userId, 
+            ':center_name' => $name,
+            ':img_src' => $img,
+            ':city' => $city,
+            ':phone_number' => $phone,
+            ':description' => $desc,
+            ':map_link' => $map
+        ]);
+}
+
+    public function getAllDonors() {
+    
+    $query = "SELECT u.id, d.first_name, d.last_name, u.email, d.birthdate, bg.group_name as blood_group 
+            FROM users u 
+            JOIN donors d ON u.id = d.id
+            Join blood_groups bg ON bg.id = d.blood_group_id";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getAllCenters() {
+        $sql = "SELECT 
+                    u.id, 
+                    bc.center_name, 
+                    bc.city, 
+                    bc.phone_number 
+                FROM {$this->users_table} u
+                INNER JOIN {$this->centers_table} bc ON u.id = bc.id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getDonorById($id) {
+    try {
+        $sql = "SELECT u.id, u.email, 
+                       d.first_name, d.last_name, d.birthdate, d.blood_group_id 
+                FROM users u 
+                JOIN donors d ON u.id = d.id 
+                WHERE u.id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        error_log("Gabim në getDonorById: " . $e->getMessage());
+        return null;
+    }
+}
+public function getCenterById($id) {
+    try {
+        $sql = "SELECT u.username, u.email, bc.* FROM {$this->users_table} u
+                INNER JOIN {$this->centers_table} bc ON u.id = bc.id 
+                WHERE u.id = :id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Gabim te getCenterById: " . $e->getMessage());
+        return null;
+    }
+}
+public function editDonor($id, $fName, $lName, $email, $birthdate, $blood_id) {
+    try {
+        $sql1 = "UPDATE users SET email = :email WHERE id = :id";
+        $stmt1 = $this->conn->prepare($sql1);
+        $stmt1->execute([
+            ':email'   => $email,
+            ':id'      => $id
+        ]);
+        $sql2 = "UPDATE donors SET 
+                    first_name = :fname, 
+                    last_name = :lname, 
+                    birthdate = :bdate, 
+                    blood_group_id = :bgroup 
+                 WHERE id = :id";
+        $stmt2 = $this->conn->prepare($sql2);
+        
+        return $stmt2->execute([
+            ':fname'  => $fName,
+            ':lname'  => $lName,
+            ':bdate'  => $birthdate,
+            ':bgroup' => $blood_id,
+            ':id'     => $id
+        ]);
+
+    } catch (PDOException $e) {
+        die("Gabim gjatë editimit: " . $e->getMessage());
+    }
+}
+public function editCenter($id, $username, $email, $name, $city, $phone, $desc, $map, $img) {
+     try {
+        $query1 = "UPDATE {$this->users_table} SET username = :username, email = :email WHERE id = :id";
+        $stmt1 = $this->conn->prepare($query1);
+        $stmt1->execute([
+            ':username' => $username,
+            ':email'    => $email,
+            ':id'       => $id
+        ]);
+
+        $query2 = "UPDATE {$this->centers_table} SET 
+                    center_name = :name, 
+                    city = :city, 
+                    phone_number = :phone, 
+                    description = :desc, 
+                    map_link = :map, 
+                    img_src = :img 
+                   WHERE id = :id";
+        $stmt2 = $this->conn->prepare($query2);
+        $stmt2->execute([
+            ':name'  => $name,
+            ':city'  => $city,
+            ':phone' => $phone,
+            ':desc'  => $desc,
+            ':map'   => $map,
+            ':img'   => $img,
+            ':id'    => $id
+        ]);
+       return true;
+         } catch (PDOException $e) {
+        die("Gabim gjatë editimit: " . $e->getMessage());
+    }
+}
+public function deleteUser($id) {
+    try {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        error_log("Gabim gjatë fshirjes: " . $e->getMessage());
+        return false;
+    }
+}
+
+public function countTotalDonors() {
+    $sql = "SELECT COUNT(*) as total FROM users WHERE role_id = 2";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['total'];
+}
+
+public function countTotalAdmins() {
+    $sql = "SELECT COUNT(*) as total FROM users WHERE role_id = 1";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['total'];
+}
+
+}
+?>
