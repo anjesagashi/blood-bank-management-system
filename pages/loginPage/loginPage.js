@@ -17,7 +17,11 @@ const loginUsername = document.getElementById("loginUsername");
 const loginPassword = document.getElementById("loginPassword");
 
 const regUsername = document.getElementById("regUsername");
+const regLastname = document.getElementById("regLastname");
 const regEmail = document.getElementById("regEmail");
+const regPhone = document.getElementById("regPhone");
+const regbirthdate = document.getElementById("regBirthdate");
+const regBlood = document.getElementById("regBlood");
 const regPassword = document.getElementById("regPassword");
 
 function showError(input, message) {
@@ -76,6 +80,13 @@ registerForm.addEventListener("submit", (e) => {
     showSuccess(regUsername);
   }
 
+  if (regLastname.value.trim() === "") {
+    showError(regLastname, "Lastname is required");
+    valid = false;
+  } else {
+    showSuccess(regLastname);
+  }
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (regEmail.value.trim() === "") {
     showError(regEmail, "Email is required");
@@ -85,6 +96,28 @@ registerForm.addEventListener("submit", (e) => {
     valid = false;
   } else {
     showSuccess(regEmail);
+  }
+
+  if (regBlood.value === "") {
+    showError(regBlood, "Select blood group");
+    valid = false;
+  } else {
+    showSuccess(regBlood);
+  }
+
+  if (regbirthdate.value === "") {
+    showError(regBirthdate, "Birthdate is required");
+    valid = false;
+  } else {
+    const selectedDate = new Date(regBirthdate.value);
+    const maxDate = new Date(regBirthdate.max);
+
+    if (selectedDate > maxDate) {
+      showError(regBirthdate, "You must be at least 16 years old");
+      valid = false;
+    } else {
+      showSuccess(regBirthdate);
+    }
   }
 
   if (regPassword.value.trim() === "") {
@@ -102,3 +135,7 @@ registerForm.addEventListener("submit", (e) => {
     registerForm.reset();
   }
 });
+
+const today = new Date();
+today.setFullYear(today.getFullYear() - 16);
+regBirthdate.max = today.toISOString().split("T")[0];

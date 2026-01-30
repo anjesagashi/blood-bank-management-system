@@ -37,7 +37,7 @@
       <div class="formBox register">
         <form id="registerForm" novalidate>
           <h1>Registration</h1>
-          <div class="inputBox">
+          <div class="regInputBox">
             <input type="text" id="regUsername" placeholder="Username" />
             <img
               src="../../images/svg/user.svg"
@@ -46,7 +46,16 @@
             />
             <span class="errorMessage"></span>
           </div>
-          <div class="inputBox">
+          <div class="regInputBox">
+            <input type="text" id="regLastname" placeholder="Lastname" />
+            <img
+              src="../../images/svg/user.svg"
+              alt="User icon"
+              class="iconImg"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="regInputBox">
             <input type="email" id="regEmail" placeholder="Email" />
             <img
               src="../../images/svg/email.svg"
@@ -55,7 +64,35 @@
             />
             <span class="errorMessage"></span>
           </div>
-          <div class="inputBox">
+          <div class="regInputBox">
+            <input type="tel" id="regPhone" placeholder="+383 44 123 456" />
+            <img
+              src="../../images/svg/regCallPhone.svg"
+              class="iconImg"
+              alt="Phone icon"
+            />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="regInputBox">
+            <input type="date" id="regBirthdate" class="inputBirthdate" />
+            <span class="errorMessage"></span>
+          </div>
+          <div class="regInputBox">
+            <select id="regBlood" name="blood">
+              <option value="" disabled selected>Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+            <span class="errorMessage"></span>
+          </div>
+
+          <div class="regInputBox">
             <input type="password" id="regPassword" placeholder="Password" />
             <img
               src="../../images/svg/lock.svg"

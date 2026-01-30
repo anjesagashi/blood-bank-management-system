@@ -88,6 +88,26 @@
   opacity: 1;
   padding: 0 40px 0 10px;
 }
+.notificationContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.notificationIcon {
+  width: 22px;
+  filter: invert(0.7);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -5px;
+  right: -6px;
+  background: #6d1417;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
 .loginButton {
   padding-inline: 20px;
   padding-block: 10px;

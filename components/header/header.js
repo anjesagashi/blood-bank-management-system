@@ -34,6 +34,12 @@ class HeaderComponent extends HTMLElement {
               class="searchIcon"
             />
           </div>
+
+          <div class="notificationContainer">
+            <img src="../../images/svg/bellIcon.svg" alt="Notifications" class="notificationIcon" />
+            <span class="notificationBadge">3</span> 
+          </div>
+          
           <a href="../../pages/loginPage/loginPage.html" class="loginButton">Login</a>
         </div>
       </div>
