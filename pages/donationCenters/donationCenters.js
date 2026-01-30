@@ -1,4 +1,3 @@
-goToDetails = () => {
-  window.location.href =
-    "../../pages/donationCentersDetails/donationCentersDetails.html";
+const goToDetails = (id) => {
+  window.location.href = `../../pages/donationCentersDetails/donationCentersDetails.php?id=${id}`;
 };

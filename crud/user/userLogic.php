@@ -75,17 +75,10 @@ class User {
 }
 
 public function getAllCenters() {
-        $sql = "SELECT 
-                    u.id, 
-                    bc.center_name, 
-                    bc.city, 
-                    bc.phone_number 
-                FROM {$this->users_table} u
-                INNER JOIN {$this->centers_table} bc ON u.id = bc.id";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM {$this->centers_table}";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 public function getDonorById($id) {

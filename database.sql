@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2026 at 04:02 PM
+-- Generation Time: Jan 30, 2026 at 11:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,6 +58,14 @@ CREATE TABLE `blood_centers` (
   `description` text DEFAULT NULL,
   `map_link` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blood_centers`
+--
+
+INSERT INTO `blood_centers` (`id`, `center_name`, `img_src`, `city`, `phone_number`, `description`, `map_link`) VALUES
+(24, 'Doha Medical Emergency', 'https://telegrafi.com/media-library/2024-11-466483277-1144812930982692-2808601703029753315-n-jpg.jpg?id=58350221&width=980', 'Podujeva, Kosovo', '+383 44 123 456', 'Doha Medical Emergency is a trusted medical center offering safe and professional blood donation services. Our trained staff and modern equipment ensure a secure and comfortable experience for all donors.', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2178.6368220605373!2d21.19682351651736!3d42.89566162127647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354af0050a6baf1%3A0xe4c9f1dcc555edd4!2sEmergjenca%20e%20Qytetit!5e0!3m2!1sen!2s!4v1769768371182!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade'),
+(25, 'QKUK Emergency Center', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqkgcuRcb7vfiJQamCdoe1t0eFF1AZdJ1bg&s', 'Prishtine, Kosova', '+38345607602', 'Prishtina Emergency Center', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4088.8582227869742!2d21.15729445595416!3d42.643556439585566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549e945aaffc69%3A0x5d3cc3761994283e!2sUniversity%20Clinical%20Center%20of%20Kosovo!5e0!3m2!1sen!2s!4v1769769164198!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade');
 
 -- --------------------------------------------------------
 
@@ -164,6 +172,13 @@ CREATE TABLE `donors` (
   `blood_group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `donors`
+--
+
+INSERT INTO `donors` (`id`, `first_name`, `last_name`, `birthdate`, `blood_group_id`) VALUES
+(22, 'donor', 'donor', '2026-01-06', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -212,6 +227,15 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`) VALUES
+(22, 'donor123', 'donor@gmail.com', '$2y$10$O7I5ZnFh7ZNw2OJiznP2Le/vaedonP8ep9Bsrjmk.lKISCgVW3EYu', 2),
+(24, 'dohapodujeve', 'doha@gmail.com', '$2y$10$o1NJIUC5go.0pZ0FkTKI0.RwOQyRCPP/bu8ktAshKPPi7y16oNV86', 3),
+(25, 'qkuk123', 'qkuk@gmail.com', '$2y$10$3Mu5x5zCun8beZ4Bf7xaCeWQzz4xslKmr1fG4nQGxBy9R6LTG6Zy.', 3);
 
 --
 -- Indexes for dumped tables
@@ -315,7 +339,7 @@ ALTER TABLE `appointment_statuses`
 -- AUTO_INCREMENT for table `blood_centers`
 --
 ALTER TABLE `blood_centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `blood_groups`
@@ -351,7 +375,7 @@ ALTER TABLE `donation_appointments`
 -- AUTO_INCREMENT for table `donors`
 --
 ALTER TABLE `donors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -369,7 +393,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
