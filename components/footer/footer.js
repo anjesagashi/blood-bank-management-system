@@ -39,11 +39,11 @@ class FooterComponent extends HTMLElement {
       <div class="footerSection">
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="../../pages/homePage/homePage.html">Home</a></li>
-          <li><a href="../../pages/aboutUsPage/aboutUsPage.html">About Us</a></li>
-           <li><a href="../../pages/donationCenters/donationCenters.html">Donation Centers</a></li>
-          <li><a href="../../pages/contactUs/contactUs.html">Contact</a></li>
-          <li><a href="../../pages/pageNotFound/pageNotFound.html">Privacy & Policy</a></li>
+          <li><a href="../../pages/homePage/homePage.php">Home</a></li>
+          <li><a href="../../pages/aboutUsPage/aboutUsPage.php">About Us</a></li>
+           <li><a href="../../pages/donationCenters/donationCenters.php">Donation Centers</a></li>
+          <li><a href="../../pages/contactUs/contactUs.php">Contact</a></li>
+          <li><a href="../../pages/pageNotFound/pageNotFound.php">Privacy & Policy</a></li>
         </ul>
       </div>
 

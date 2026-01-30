@@ -19,7 +19,6 @@ const loginPassword = document.getElementById("loginPassword");
 const regUsername = document.getElementById("regUsername");
 const regLastname = document.getElementById("regLastname");
 const regEmail = document.getElementById("regEmail");
-const regPhone = document.getElementById("regPhone");
 const regbirthdate = document.getElementById("regBirthdate");
 const regBlood = document.getElementById("regBlood");
 const regPassword = document.getElementById("regPassword");
@@ -42,8 +41,8 @@ function showSuccess(input) {
   input.classList.add("inputSuccess");
 }
 
+/* LOGIN VALIDIM */
 loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
   let valid = true;
 
   if (loginUsername.value.trim() === "") {
@@ -63,14 +62,13 @@ loginForm.addEventListener("submit", (e) => {
     showSuccess(loginPassword);
   }
 
-  if (valid) {
-    console.log("Login successful");
-    window.location.href = "../../pages/homePage/homePage.html";
+  if (!valid) {
+    e.preventDefault(); // ❗ vetëm kur ka gabime
   }
 });
 
+/* REGISTER VALIDIM */
 registerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
   let valid = true;
 
   if (regUsername.value.trim() === "") {
@@ -106,17 +104,17 @@ registerForm.addEventListener("submit", (e) => {
   }
 
   if (regbirthdate.value === "") {
-    showError(regBirthdate, "Birthdate is required");
+    showError(regbirthdate, "Birthdate is required");
     valid = false;
   } else {
-    const selectedDate = new Date(regBirthdate.value);
-    const maxDate = new Date(regBirthdate.max);
+    const selectedDate = new Date(regbirthdate.value);
+    const maxDate = new Date(regbirthdate.max);
 
     if (selectedDate > maxDate) {
-      showError(regBirthdate, "You must be at least 16 years old");
+      showError(regbirthdate, "You must be at least 16 years old");
       valid = false;
     } else {
-      showSuccess(regBirthdate);
+      showSuccess(regbirthdate);
     }
   }
 
@@ -130,12 +128,13 @@ registerForm.addEventListener("submit", (e) => {
     showSuccess(regPassword);
   }
 
-  if (valid) {
-    console.log("Registration successful");
-    registerForm.reset();
+  // ❗ Nëse ka gabime → ndalo submit
+  if (!valid) {
+    e.preventDefault();
   }
 });
 
+/* Birthdate max 16 vjet */
 const today = new Date();
 today.setFullYear(today.getFullYear() - 16);
-regBirthdate.max = today.toISOString().split("T")[0];
+regbirthdate.max = today.toISOString().split("T")[0];

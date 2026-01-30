@@ -1,6 +1,12 @@
 <?php
 include "../../config.php"; 
 include "../../crud/user/userLogic.php";
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
 
 $db = new Database();
 $connection = $db->getConnection();
@@ -19,14 +25,13 @@ $user = new User($connection);
       href="../../pages/donationCenters/donationCenters.css"
     />
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
   </head>
   <body>
     <section class="centersSection">
-      <custom-header></custom-header>
+     <?php include "../../components/header/header.php";?>
       <div class="centersIntroContainer">
         <h1>Donation Centers</h1>
         <p>Find trusted medical centers where you can donate blood safely.</p>

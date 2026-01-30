@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,14 +15,13 @@
     <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
     <link rel="stylesheet" href="../../pages/aboutUsPage/aboutUsPage.css" />
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
   </head>
   <body>
     <section class="heroSection">
-      <custom-header></custom-header>
+      <?php include "../../components/header/header.php";?>
       <div class="aboutUsInfo">
         <h1>Helping Save Lives Through Smarter Blood Donation</h1>
         <p>
@@ -22,7 +29,7 @@
           transparent system. Our goal is to simplify donation and make sure
           hospitals get the blood they need — when they need it.
         </p>
-        <a href="#" class="primaryBtn">Join Us</a>
+       
       </div>
       <div class="cardWrapper">
         <div class="card">

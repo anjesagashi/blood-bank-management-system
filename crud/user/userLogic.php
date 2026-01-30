@@ -61,6 +61,32 @@ class User {
             ':map_link' => $map
         ]);
 }
+   public function createAdmin($username, $email, $password) {
+            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO {$this->users_table} (username, email, password, role_id) 
+                    VALUES (:username, :email, :password, 1)";
+            
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':username' => $username,
+                ':email'    => $email,
+                ':password' => $hashedPass
+            ]);
+            return true;
+}
+public function login($username, $password){
+    $sql = "SELECT * FROM users WHERE username = :username";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([':username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        return $user; 
+    } else {
+        return false;
+    }
+}
+
 
     public function getAllDonors() {
     

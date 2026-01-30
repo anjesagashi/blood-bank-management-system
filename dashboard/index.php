@@ -1,17 +1,32 @@
 <?php
-if (!isset($_GET['page'])) {
-    // 2. E ridrejtojmë browserin që ta shtojë ?page=donors
-    header("Location: index.php?page=donors");
+session_start();
+
+if(!isset($_SESSION['role_id'])) {
+    header("Location: ../pages/loginPage/loginPage.php");
     exit();
 }
 
-$page = $_GET['page'];
+$role_id = $_SESSION['role_id'];
+
+if (!isset($_GET['page'])) {
+    if($role_id == 1) { 
+       header("Location: index.php?page=donors");
+    exit();
+    } elseif($role_id == 3) { 
+       
+        header("Location: index.php?page=appointments");
+    exit();
+
+    }
+} else {
+    $page = $_GET['page'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="sq">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
      <link rel="icon" type="image/x-icon" href="../images/lifeFlow.png" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styledTables.css">

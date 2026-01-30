@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,18 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LifeFlow - Contact Us</title>
     <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
-
     <link rel="stylesheet" href="../../pages/contactUs/contactUs.css" />
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
   </head>
   <body>
     <section class="contactSection">
-      <custom-header></custom-header>
+     <?php include "../../components/header/header.php";?>
 
       <div class="sectionTitle">
         <h1>Contact Us</h1>

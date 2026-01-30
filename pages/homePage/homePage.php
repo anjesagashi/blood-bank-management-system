@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,24 +16,33 @@
     <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
     <link rel="stylesheet" href="homePage.css" />
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
     <link rel="stylesheet" href="../../components/stats/stats.css" />
     <script src="../../components/stats/stats.js"></script>
   </head>
   <body>
     <section class="hero">
-      <custom-header></custom-header>
+    <?php include "../../components/header/header.php";?>
 
       <div class="heroBox">
         <div class="heroContent">
           <h1>Save Lives By Donating Blood</h1>
           <p>Join our mission to help people in need</p>
+         
           <div class="homeBtns">
             <a href="#" class="primaryBtn">Donate now</a>
+  <?php 
+    
+    if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1): 
+    ?>
+        <a href="../../dashboard/index.php" class="primaryBtn">Go to Dashboard</a>
+    <?php endif; ?>
           </div>
+          
+          
+   
         </div>
         <img src="../../images/lifeFlow.png" class="lifeFlowImg" />
       </div>
@@ -47,12 +65,6 @@
         src="../../images/svg/hospital.svg"
         value="25"
         description="Partner Hospitals"
-      ></custom-stats>
-
-      <custom-stats
-        src="../../images/svg/bloodDrop.svg"
-        value="1200"
-        description="Donors"
       ></custom-stats>
     </section>
 

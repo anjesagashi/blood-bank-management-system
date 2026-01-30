@@ -1,6 +1,12 @@
 <?php
 include "../../config.php";
 include "../../crud/user/userLogic.php";
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
 
 $db = new Database();
 $user = new User($db->getConnection());
@@ -25,16 +31,13 @@ if (!$center) {
     <link rel="icon" type="image/x-icon" href="../../images/lifeFlow.png" />
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
     <link rel="stylesheet" href="donationCentersDetails.css" />
-
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
   </head>
   <body>
    <section class="centerDetailsSection">
-  <custom-header></custom-header>
+   <?php include "../../components/header/header.php";?>
   <div class="centerDetailsContainer">
     <img
       src="<?php echo !empty($center['img_src']) ? $center['img_src'] : '../../images/donationCenters/default.jpg'; ?>"

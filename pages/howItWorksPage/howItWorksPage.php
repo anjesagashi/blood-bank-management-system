@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../pages/loginPage/loginPage.php"); 
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,17 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LifeFlow - How It Works</title>
     <link rel="stylesheet" href="howItWorksPage.css" />
-
     <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
-    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/header/header.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="../../components/footer/footer.css" />
-
-    <script src="../../components/header/header.js"></script>
-    <script src="../../components/footer/footer.js"></script>
+    <script src="../../components/footer/footer.js?v=1.1"></script>
   </head>
   <body>
     <section class="heroSection">
-      <custom-header></custom-header>
+       <?php include "../../components/header/header.php";?>
       <img
         src="../../images/howItWorks/blood1.jpg"
         alt="Bg Image"
