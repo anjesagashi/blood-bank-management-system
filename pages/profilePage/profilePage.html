@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LifeFlow - Profile</title>
+    <link rel="stylesheet" href="profilePage.css" />
+
+    <link rel="stylesheet" href="../../components/globalCSS/globalCSS.css" />
+    <link rel="stylesheet" href="../../components/header/header.css" />
+    <link rel="stylesheet" href="../../components/footer/footer.css" />
+
+    <script src="../../components/header/header.js"></script>
+    <script src="../../components/footer/footer.js"></script>
+  </head>
+  <body>
+    <section class="profileSection">
+      <custom-header></custom-header>
+
+      <div class="profilePage">
+        <h2>My Profile</h2>
+
+        <button id="editBtn" class="editBtn">Edit Profile</button>
+
+        <form class="profileForm">
+          <div class="row">
+            <div class="inputBox">
+              <label>First Name</label>
+              <input type="text" placeholder="First name" disabled />
+            </div>
+
+            <div class="inputBox">
+              <label>Last Name</label>
+              <input type="text" placeholder="Last name" disabled />
+            </div>
+          </div>
+
+          <div class="inputBox">
+            <label>Email</label>
+            <input type="email" placeholder="email@example.com" disabled />
+          </div>
+
+          <div class="row">
+            <div class="inputBox">
+              <label>Phone</label>
+              <input type="tel" placeholder="+383 44 000 000" disabled />
+            </div>
+
+            <div class="inputBox">
+              <label>Birthdate</label>
+              <input type="date" disabled />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="inputBox">
+              <label>Blood Group</label>
+              <select disabled>
+                <option value="">Select</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+              </select>
+            </div>
+
+            <div class="inputBox">
+              <label>Password</label>
+              <input type="password" placeholder="New password" disabled />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="saveBtn" disabled>Save Changes</button>
+            <button type="button" id="cancelBtn" class="cancelBtn" disabled>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <script src="profilePage.js"></script>
+    </section>
+    <custom-footer></custom-footer>
+  </body>
+</html>
