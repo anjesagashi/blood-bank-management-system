@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2026 at 12:59 PM
+-- Generation Time: Jan 31, 2026 at 07:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,41 +105,13 @@ CREATE TABLE `blood_inventory` (
   `quantity_ml` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `blood_requests`
+-- Dumping data for table `blood_inventory`
 --
 
-CREATE TABLE `blood_requests` (
-  `id` int(11) NOT NULL,
-  `center_id` int(11) NOT NULL,
-  `blood_group_id` int(11) NOT NULL,
-  `request_urgency` int(11) NOT NULL,
-  `needed_amount_ml` decimal(10,0) DEFAULT NULL,
-  `collected_amount` decimal(10,0) DEFAULT 0,
-  `is_active` tinyint(1) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blood_requests_urgency`
---
-
-CREATE TABLE `blood_requests_urgency` (
-  `id` int(11) NOT NULL,
-  `urgency_name` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `blood_requests_urgency`
---
-
-INSERT INTO `blood_requests_urgency` (`id`, `urgency_name`) VALUES
-(3, 'high'),
-(1, 'low'),
-(2, 'medium');
+INSERT INTO `blood_inventory` (`id`, `center_id`, `blood_group_id`, `quantity_ml`) VALUES
+(1, 42, 1, 400),
+(2, 45, 1, 370);
 
 -- --------------------------------------------------------
 
@@ -151,12 +123,21 @@ CREATE TABLE `donation_appointments` (
   `id` int(11) NOT NULL,
   `donor_id` int(11) NOT NULL,
   `center_id` int(11) NOT NULL,
-  `request_id` int(11) DEFAULT NULL,
   `status_id` int(11) NOT NULL DEFAULT 1,
   `amount_ml` int(11) DEFAULT 450,
   `scheduled_date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `donation_appointments`
+--
+
+INSERT INTO `donation_appointments` (`id`, `donor_id`, `center_id`, `status_id`, `amount_ml`, `scheduled_date`, `created_at`) VALUES
+(1, 41, 42, 4, 360, '2026-01-31', '2026-01-31 17:58:36'),
+(2, 41, 42, 2, 400, '2026-02-04', '2026-01-31 18:00:33'),
+(3, 41, 42, 3, 400, '2026-01-31', '2026-01-31 18:01:50'),
+(4, 41, 45, 3, 370, '2026-01-31', '2026-01-31 18:14:23');
 
 -- --------------------------------------------------------
 
@@ -177,7 +158,8 @@ CREATE TABLE `donors` (
 --
 
 INSERT INTO `donors` (`id`, `first_name`, `last_name`, `birthdate`, `blood_group_id`) VALUES
-(41, 'User1', 'user', '2026-01-05', 1);
+(41, 'User1', 'user', '2026-01-05', 1),
+(46, 'User', 'User', '2010-01-05', 4);
 
 -- --------------------------------------------------------
 
@@ -201,7 +183,8 @@ CREATE TABLE `messages` (
 
 INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message_text`, `subject`, `is_read`, `created_at`) VALUES
 (4, 41, NULL, 'Dear Admin,\r\n\r\nI am writing to ask about the current requirements for blood donation. I recently traveled abroad and wanted to confirm if there is a waiting period before I can donate again.\r\n\r\nAlso, could you please provide the working hours for the main center this coming Friday?\r\n\r\nBest regards,\r\n\r\nJohn Doe', 'Inquiry regarding blood donation eligibility', 0, '2026-01-31 11:58:03'),
-(5, 38, 41, 'Dear Donor,\r\n\r\nThank you for reaching out to us.\r\n\r\nRegarding your travel, generally, there is a waiting period of 28 days if you have visited areas with specific health alerts, but we would need to check the specific country. As for our working hours, the main center is open this Friday from 8:00 AM to 6:00 PM.\r\n\r\nPlease make sure to bring a valid ID and ensure you are well-hydrated before coming.\r\n\r\nBest regards, Blood Bank Administration', 'Re: Inquiry regarding blood donation eligibility', 0, '2026-01-31 11:58:53');
+(5, 38, 41, 'Dear Donor,\r\n\r\nThank you for reaching out to us.\r\n\r\nRegarding your travel, generally, there is a waiting period of 28 days if you have visited areas with specific health alerts, but we would need to check the specific country. As for our working hours, the main center is open this Friday from 8:00 AM to 6:00 PM.\r\n\r\nPlease make sure to bring a valid ID and ensure you are well-hydrated before coming.\r\n\r\nBest regards, Blood Bank Administration', 'Re: Inquiry regarding blood donation eligibility', 0, '2026-01-31 11:58:53'),
+(6, 38, 41, 'Dear John,\r\n\r\nThank you for your interest in donating!\r\n\r\nTravel: Most international travel requires a 28-day waiting period before you can donate. We will confirm your eligibility through a quick screening on-site.\r\n\r\nWorking Hours: Our main center is open this Friday from 08:00 to 18:00.\r\n\r\nPlease remember to bring your ID and stay hydrated. You can update any of your details anytime via your LifeFlow profile.\r\n\r\nBest regards,\r\n\r\nLifeFlow Admin', 'Re: Inquiry regarding blood donation eligibility', 0, '2026-01-31 14:16:28');
 
 -- --------------------------------------------------------
 
@@ -242,11 +225,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`) VALUES
-(38, 'admin', 'admin@gmail.com', '$2y$10$8aySX6LAR9snjQ8e75usPun2ekX8FUWAQJXMrNdO6.b9K2Arrd0my', 1),
+(38, 'admin', 'admin@gmail.com', '$2y$10$HY2fu7F.OcVddiAAkc5PwerrxHCRJ/He2TnMJBpKsa1YcnWxx0lni', 1),
 (40, 'admin2', 'admin2@gmail.com', '$2y$10$0VF3i/9OQdnKuCsSukpEVe8Zf6NAgLfwv1nihGn5Maz7XmoclIofK', 1),
 (41, 'user1', 'user1@gmail.com', '$2y$10$b4BfN.y54kIxc07f.oFBcekketmLv6CTg8k.xQ2BTdK.sgGfCQGP2', 2),
 (42, 'doha', 'doha@gmail.com', '$2y$10$OrlcSzl2b39DBo6yUJKN1.oGaMQEMhv4NoPy3uyNiMvR1Al14bauu', 3),
-(45, 'qkuk', 'qkuk@gmail.com', '$2y$10$2J5OjWAsACumw9bOid9h/.E.maCPpU1PBiz3t7RCvukFlsYtPCx/K', 3);
+(45, 'qkuk', 'qkuk@gmail.com', '$2y$10$2J5OjWAsACumw9bOid9h/.E.maCPpU1PBiz3t7RCvukFlsYtPCx/K', 3),
+(46, 'user2', 'user2@gmail.com', '$2y$10$rfHmvMSJ/YEpyFAWJIl2deakQ5F6e1RDwGI0gkIXZkBdAjDqAVlIe', 2);
 
 --
 -- Indexes for dumped tables
@@ -281,29 +265,12 @@ ALTER TABLE `blood_inventory`
   ADD KEY `blood_group_id` (`blood_group_id`);
 
 --
--- Indexes for table `blood_requests`
---
-ALTER TABLE `blood_requests`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `center_id` (`center_id`),
-  ADD KEY `blood_group_id` (`blood_group_id`),
-  ADD KEY `request_urgency` (`request_urgency`);
-
---
--- Indexes for table `blood_requests_urgency`
---
-ALTER TABLE `blood_requests_urgency`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `urgency_name` (`urgency_name`);
-
---
 -- Indexes for table `donation_appointments`
 --
 ALTER TABLE `donation_appointments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `donor_id` (`donor_id`),
   ADD KEY `center_id` (`center_id`),
-  ADD KEY `request_id` (`request_id`),
   ADD KEY `status_id` (`status_id`);
 
 --
@@ -362,37 +329,25 @@ ALTER TABLE `blood_groups`
 -- AUTO_INCREMENT for table `blood_inventory`
 --
 ALTER TABLE `blood_inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blood_requests`
---
-ALTER TABLE `blood_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blood_requests_urgency`
---
-ALTER TABLE `blood_requests_urgency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `donation_appointments`
 --
 ALTER TABLE `donation_appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `donors`
 --
 ALTER TABLE `donors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -404,7 +359,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables
@@ -424,20 +379,11 @@ ALTER TABLE `blood_inventory`
   ADD CONSTRAINT `blood_inventory_ibfk_2` FOREIGN KEY (`blood_group_id`) REFERENCES `blood_groups` (`id`);
 
 --
--- Constraints for table `blood_requests`
---
-ALTER TABLE `blood_requests`
-  ADD CONSTRAINT `blood_requests_ibfk_1` FOREIGN KEY (`center_id`) REFERENCES `blood_centers` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `blood_requests_ibfk_2` FOREIGN KEY (`blood_group_id`) REFERENCES `blood_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `blood_requests_ibfk_3` FOREIGN KEY (`request_urgency`) REFERENCES `blood_requests_urgency` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `donation_appointments`
 --
 ALTER TABLE `donation_appointments`
   ADD CONSTRAINT `donation_appointments_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `donation_appointments_ibfk_2` FOREIGN KEY (`center_id`) REFERENCES `blood_centers` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `donation_appointments_ibfk_3` FOREIGN KEY (`request_id`) REFERENCES `blood_requests` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `donation_appointments_ibfk_4` FOREIGN KEY (`status_id`) REFERENCES `appointment_statuses` (`id`);
 
 --

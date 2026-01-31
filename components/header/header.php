@@ -17,7 +17,9 @@ $isUser = isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2;
           <li><a href="../../pages/aboutUsPage/aboutUsPage.php">About Us</a></li>
           <li><a href="../../pages/howItWorksPage/howItWorksPage.php">How it Works</a></li>
           <li><a href="../../pages/contactUs/contactUs.php">Contact</a></li>
+           <?php if($isLoggedIn && $isUser): ?>
           <li><a href="../../pages/myAppointments/myAppointments.php">My Appointments</a></li>
+           <?php endif; ?>
         </nav>
 
         <div class="headerActions">

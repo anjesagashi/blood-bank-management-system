@@ -12,14 +12,12 @@ $role_id = $_SESSION['role_id'] ?? 0; // 1 = admin, 3 = center staff
                 <a href="index.php?page=donors" class="<?php echo ($page == 'donors') ? 'active' : ''; ?>">Donors</a>
                 <a href="index.php?page=donationCenters" class="<?php echo ($page == 'donationCenters') ? 'active' : ''; ?>">Donation Centers</a>
                 <a href="index.php?page=donations" class="<?php echo ($page == 'donations') ? 'active' : ''; ?>">Donations</a>
-                <a href="index.php?page=bloodRequests" class="<?php echo ($page == 'bloodRequests') ? 'active' : ''; ?>">Blood Requests</a>
                 <a href="index.php?page=bloodInventory" class="<?php echo ($page == 'bloodInventory') ? 'active' : ''; ?>">Blood Inventory</a>
                 <a href="index.php?page=messages" class="<?php echo ($page == 'messages') ? 'active' : ''; ?>">Messages</a>
                 <a href="../pages/homePage/homePage.php">Back to HomePage</a>
             <?php elseif($role_id == 3): ?>
                 
                 <a href="index.php?page=appointments" class="<?php echo ($page == 'appointments') ? 'active' : ''; ?>">Appointments</a>
-                <a href="index.php?page=createRequest" class="<?php echo ($page == 'createRequest') ? 'active' : ''; ?>">Create a Request</a>
             <?php endif; ?>
             <a href="../pages/loginPage/logout.php">Logout</a>
         </ul>
