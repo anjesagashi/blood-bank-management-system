@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2026 at 11:41 AM
+-- Generation Time: Jan 31, 2026 at 12:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,8 +64,8 @@ CREATE TABLE `blood_centers` (
 --
 
 INSERT INTO `blood_centers` (`id`, `center_name`, `img_src`, `city`, `phone_number`, `description`, `map_link`) VALUES
-(24, 'Doha Medical Emergency', 'https://telegrafi.com/media-library/2024-11-466483277-1144812930982692-2808601703029753315-n-jpg.jpg?id=58350221&width=980', 'Podujeva, Kosovo', '+383 44 123 456', 'Doha Medical Emergency is a trusted medical center offering safe and professional blood donation services. Our trained staff and modern equipment ensure a secure and comfortable experience for all donors.', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2178.6368220605373!2d21.19682351651736!3d42.89566162127647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354af0050a6baf1%3A0xe4c9f1dcc555edd4!2sEmergjenca%20e%20Qytetit!5e0!3m2!1sen!2s!4v1769768371182!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade'),
-(25, 'QKUK Emergency Center', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqkgcuRcb7vfiJQamCdoe1t0eFF1AZdJ1bg&s', 'Prishtine, Kosova', '+38345607602', 'Prishtina Emergency Center', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4088.8582227869742!2d21.15729445595416!3d42.643556439585566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549e945aaffc69%3A0x5d3cc3761994283e!2sUniversity%20Clinical%20Center%20of%20Kosovo!5e0!3m2!1sen!2s!4v1769769164198!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade');
+(42, 'Doha Medical Center', 'https://telegrafi.com/media-library/2024-11-466483277-1144812930982692-2808601703029753315-n-jpg.jpg?id=58350221&width=980', 'Podujeve, Kosova', '+38345123456', 'Doha Medical Emergency Center provides fast and reliable care for patients in urgent medical situations. Our expert team ensures compassionate and effective treatment, 24/7.', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2178.6368220605373!2d21.19682351651736!3d42.89566162127647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354af0050a6baf1%3A0xe4c9f1dcc555edd4!2sEmergjenca%20e%20Qytetit!5e0!3m2!1sen!2s!4v1769768371182!5m2!1sen!2s'),
+(45, 'QKUK Emergency Center', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqkgcuRcb7vfiJQamCdoe1t0eFF1AZdJ1bg&s', 'Prishtine, Kosova', '+383 45 123 456', 'QKUK Emergency Center offers immediate and expert care for all critical medical cases. Our dedicated team works around the clock to provide fast and reliable treatment.', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4088.8582227869742!2d21.15729445595416!3d42.643556439585566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549e945aaffc69%3A0x5d3cc3761994283e!2sUniversity%20Clinical%20Center%20of%20Kosovo!5e0!3m2!1sen!2s!4v1769769164198!5m2!1sen!2s');
 
 -- --------------------------------------------------------
 
@@ -177,7 +177,7 @@ CREATE TABLE `donors` (
 --
 
 INSERT INTO `donors` (`id`, `first_name`, `last_name`, `birthdate`, `blood_group_id`) VALUES
-(22, 'donor', 'donor', '2026-01-06', 1);
+(41, 'User1', 'user', '2026-01-05', 1);
 
 -- --------------------------------------------------------
 
@@ -188,11 +188,20 @@ INSERT INTO `donors` (`id`, `first_name`, `last_name`, `birthdate`, `blood_group
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `sender_id` int(11) NOT NULL,
-  `receiver_id` int(11) NOT NULL,
+  `receiver_id` int(11) DEFAULT NULL,
   `message_text` text NOT NULL,
+  `subject` varchar(255) NOT NULL,
   `is_read` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message_text`, `subject`, `is_read`, `created_at`) VALUES
+(4, 41, NULL, 'Dear Admin,\r\n\r\nI am writing to ask about the current requirements for blood donation. I recently traveled abroad and wanted to confirm if there is a waiting period before I can donate again.\r\n\r\nAlso, could you please provide the working hours for the main center this coming Friday?\r\n\r\nBest regards,\r\n\r\nJohn Doe', 'Inquiry regarding blood donation eligibility', 0, '2026-01-31 11:58:03'),
+(5, 38, 41, 'Dear Donor,\r\n\r\nThank you for reaching out to us.\r\n\r\nRegarding your travel, generally, there is a waiting period of 28 days if you have visited areas with specific health alerts, but we would need to check the specific country. As for our working hours, the main center is open this Friday from 8:00 AM to 6:00 PM.\r\n\r\nPlease make sure to bring a valid ID and ensure you are well-hydrated before coming.\r\n\r\nBest regards, Blood Bank Administration', 'Re: Inquiry regarding blood donation eligibility', 0, '2026-01-31 11:58:53');
 
 -- --------------------------------------------------------
 
@@ -233,9 +242,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`) VALUES
-(22, 'donor123', 'donor@gmail.com', '$2y$10$O7I5ZnFh7ZNw2OJiznP2Le/vaedonP8ep9Bsrjmk.lKISCgVW3EYu', 2),
-(24, 'dohapodujeve', 'doha@gmail.com', '$2y$10$o1NJIUC5go.0pZ0FkTKI0.RwOQyRCPP/bu8ktAshKPPi7y16oNV86', 3),
-(25, 'qkuk123', 'qkuk@gmail.com', '$2y$10$3Mu5x5zCun8beZ4Bf7xaCeWQzz4xslKmr1fG4nQGxBy9R6LTG6Zy.', 3);
+(38, 'admin', 'admin@gmail.com', '$2y$10$8aySX6LAR9snjQ8e75usPun2ekX8FUWAQJXMrNdO6.b9K2Arrd0my', 1),
+(40, 'admin2', 'admin2@gmail.com', '$2y$10$0VF3i/9OQdnKuCsSukpEVe8Zf6NAgLfwv1nihGn5Maz7XmoclIofK', 1),
+(41, 'user1', 'user1@gmail.com', '$2y$10$b4BfN.y54kIxc07f.oFBcekketmLv6CTg8k.xQ2BTdK.sgGfCQGP2', 2),
+(42, 'doha', 'doha@gmail.com', '$2y$10$OrlcSzl2b39DBo6yUJKN1.oGaMQEMhv4NoPy3uyNiMvR1Al14bauu', 3),
+(45, 'qkuk', 'qkuk@gmail.com', '$2y$10$2J5OjWAsACumw9bOid9h/.E.maCPpU1PBiz3t7RCvukFlsYtPCx/K', 3);
 
 --
 -- Indexes for dumped tables
@@ -339,7 +350,7 @@ ALTER TABLE `appointment_statuses`
 -- AUTO_INCREMENT for table `blood_centers`
 --
 ALTER TABLE `blood_centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `blood_groups`
@@ -375,13 +386,13 @@ ALTER TABLE `donation_appointments`
 -- AUTO_INCREMENT for table `donors`
 --
 ALTER TABLE `donors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -393,7 +404,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Constraints for dumped tables

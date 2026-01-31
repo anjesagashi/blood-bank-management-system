@@ -28,7 +28,7 @@ $role_id = $_SESSION['role_id'] ?? 0; // 1 = admin, 3 = center staff
         <img src="../images/profilePic.png" class="profilePic" alt="Profile Image">
         <div class="adminInfo">
             <h5>Profile</h5>
-            <p>admin@exmple.com</p>
+            <p><?php echo   $_SESSION['user_email']?></p>
         </div>
        
     </a>

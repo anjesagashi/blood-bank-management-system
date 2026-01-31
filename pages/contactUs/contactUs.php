@@ -5,6 +5,28 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../../pages/loginPage/loginPage.php"); 
     exit();
 }
+
+
+include_once "../../config.php";
+include_once "../../crud/messages/messagesLogic.php";
+
+$db = new Database();
+$messageObj = new Message($db->getConnection());
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sendMessage'])) {
+    $subject = trim($_POST['subject']);
+    $message = trim($_POST['message']);
+    $sender_id = $_SESSION['user_id'];
+
+    if (!empty($subject) && !empty($message)) {
+        if ($messageObj->sendMessage($sender_id, $subject, $message)) {
+            echo "<script>alert('Message sent!');</script>";
+        } else {
+            echo "<script>alert('Error sending message');</script>";
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,35 +112,15 @@ if (!isset($_SESSION['user_id'])) {
 
         <section class="contactForm">
           <h2>Get In Touch</h2>
-
-          <form id="contactForm" novalidate>
-            <div class="inputGroup">
-              <img
-                src="../../images/svg/user.svg"
-                alt="User Icon"
-                class="inputIconImg"
-              />
-              <input type="text" id="name" placeholder="Name" />
-            </div>
-            <span class="error" id="nameError"></span>
-
-            <div class="inputGroup">
-              <img
-                src="../../images/svg/email.svg"
-                alt="Email Icon"
-                class="inputIconImg"
-              />
-              <input type="email" id="email" placeholder="Email" />
-            </div>
-            <span class="error" id="emailError"></span>
-
+<!-- MESSAGES -->
+          <form id="contactForm"  method="POST" novalidate>
             <div class="inputGroup">
               <img
                 src="../../images/svg/tag.svg"
                 alt="Subject Icon"
                 class="inputIconImg"
               />
-              <input type="text" id="subject" placeholder="Subject" />
+              <input type="text" id="subject" name="subject" placeholder="Subject" />
             </div>
             <span class="error" id="subjectError"></span>
 
@@ -128,17 +130,17 @@ if (!isset($_SESSION['user_id'])) {
                 alt="Message Icon"
                 class="inputIconImg"
               />
-              <textarea id="message" placeholder="Message"></textarea>
+              <textarea id="message" name="message" placeholder="Message"></textarea>
             </div>
             <span class="error" id="messageError"></span>
 
-            <button type="submit">Send Now</button>
+            <button type="submit" name="sendMessage">Send Now</button>
           </form>
         </section>
       </div>
     </section>
 
     <custom-footer></custom-footer>
-    <script src="../../pages/contactUs/contactUs.js"></script>
+    <script src="../../pages/contactUs/contactUs.js?v=<?php echo time(); ?>"></script>
   </body>
 </html>

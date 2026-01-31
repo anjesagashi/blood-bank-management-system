@@ -43,7 +43,7 @@ if (isset($_GET['edit_id'])) {
     $id = $_GET['edit_id'];
     $centerData = $user->getCenterById($id);
     if (!$centerData) {
-        echo "Qendra nuk u gjet!";
+        echo "Center not found!";
         exit;
     }
 }
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_center'])) {
         header("Location: index.php?page=donationCenters");
         exit();
     } else {
-        echo "<script>alert('Gabim gjatë përditësimit!');</script>";
+        echo "<script>alert('Something went wrong!');</script>";
     }
 }
 
@@ -73,7 +73,7 @@ if (isset($_GET['delete_id'])) {
          header("Location: index.php?page=donationCenters");
         exit();
     } else {
-        echo "<script>alert('Fshirja dështoi!');</script>";
+        echo "<script>alert('Delete failed!');</script>";
     }
 }
  ?>
@@ -115,7 +115,7 @@ if (isset($_GET['delete_id'])) {
             <?php
         }
     } else {
-        echo "<tr><td colspan='4'>Nuk ka qendra të regjistruara.</td></tr>";
+        echo "<tr><td colspan='4'>There is no center registered.</td></tr>";
     }
     ?>
 </tbody>

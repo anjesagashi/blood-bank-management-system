@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         $_SESSION['user_id'] = $loggedUser['id'];
     $_SESSION['username'] = $loggedUser['username']; 
     $_SESSION['first_name'] = $loggedUser['first_name'];
+      $_SESSION['user_email']=$loggedUser['email'];
          $_SESSION['role_id'] = $loggedUser['role_id']; 
     
     
