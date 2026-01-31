@@ -73,6 +73,13 @@ public function sendReply($sender_id, $receiver_id, $subject, $message_text) {
     }
 }
 
+public function getMessagesByReceiverId($userId) {
+    $sql = "SELECT * FROM {$this->table} WHERE receiver_id = :userId ORDER BY created_at DESC";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
     public function deleteMessage($id) {
     try {
         $sql = "DELETE FROM {$this->table} WHERE id = :id";

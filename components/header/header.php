@@ -1,6 +1,7 @@
 <?php 
 
 $isLoggedIn = isset($_SESSION['user_id']);
+$isUser = isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2;
 ?>
             <header class="headerSection">
       <div class="headerContainer">
@@ -32,10 +33,11 @@ $isLoggedIn = isset($_SESSION['user_id']);
             />
           </div>
 
-          <div class="notificationContainer">
+         <?php if($isLoggedIn && $isUser): ?>
+        <a href="../../pages/notificationsPage/notificationsPage.php" class="notificationContainer">
             <img src="../../images/svg/bellIcon.svg" alt="Notifications" class="notificationIcon" />
-            <span class="notificationBadge">3</span> 
-          </div>
+            </a>
+    <?php endif; ?>
           
           <?php if($isLoggedIn): ?>
           <a href="../../pages/loginPage/logout.php" class="loginButton">
