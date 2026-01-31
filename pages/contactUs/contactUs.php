@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sendMessage'])) {
             />
             <div>
               <h3>WhatsApp</h3>
-              <p>+383 49 987 654</p>
+              <p>+383 49 123 456</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sendMessage'])) {
             />
             <div>
               <h3>Email</h3>
-              <p>blood@donation.org</p>
+              <p>contact@lifeflow.org</p>
             </div>
           </div>
 
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sendMessage'])) {
               class="infoCardImg"
             />
             <div>
-              <h3>Donation Center</h3>
+              <h3>LifeFlow Staff</h3>
               <p>Podujeve, Kosovo</p>
             </div>
           </div>

@@ -339,6 +339,13 @@ public function countTotalDonors() {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row['total'];
 }
+public function countTotalCenters() {
+    $sql = "SELECT COUNT(*) as total FROM users WHERE role_id = 3";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['total'];
+}
 
 public function countTotalAdmins() {
     $sql = "SELECT COUNT(*) as total FROM users WHERE role_id = 1";

@@ -49,8 +49,8 @@ class FooterComponent extends HTMLElement {
 
       <div class="footerSection">
         <h4>Contact</h4>
-        <p>Email: info@bloodbank.com</p>
-        <p>Phone: +383 XX XXX XXX</p>
+        <p>Email: contact@lifeflow.org</p>
+        <p>Phone: +383 44 123 456</p>
       </div>
     </footer>
         `;

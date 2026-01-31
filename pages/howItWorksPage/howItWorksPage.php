@@ -102,13 +102,10 @@ if (!isset($_SESSION['user_id'])) {
       <div class="info">
         <div class="infoText">
           <h3>Choose the Right Time for You</h3>
-          <p>Operating in 160+ locations and helping over 500 lives.</p>
+          
         </div>
 
-        <div class="stats">
-          <div class="statItem">160+ <small>Centers</small></div>
-          <div class="statItem">500+ <small>Lives Saved</small></div>
-        </div>
+        
       </div>
     </section>
     <custom-footer></custom-footer>

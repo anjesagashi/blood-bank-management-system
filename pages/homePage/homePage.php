@@ -5,7 +5,10 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../../pages/loginPage/loginPage.php"); 
     exit();
 }
-
+include "../../config.php";
+include "../../crud/user/userLogic.php";
+ $db = new Database();
+ $user = new User($db->getConnection());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +54,7 @@ if (!isset($_SESSION['user_id'])) {
     <section class="statsSection">
       <custom-stats
         src="../../images/svg/bloodDrop.svg"
-        value="1200"
+        value="<?php echo $totalDonors = $user->countTotalDonors()?>"
         description="Donors"
       ></custom-stats>
 
@@ -63,7 +66,7 @@ if (!isset($_SESSION['user_id'])) {
 
       <custom-stats
         src="../../images/svg/hospital.svg"
-        value="25"
+         value="<?php echo $totalDonors = $user->countTotalCenters()?>"
         description="Partner Hospitals"
       ></custom-stats>
     </section>

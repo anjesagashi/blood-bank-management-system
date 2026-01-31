@@ -170,28 +170,7 @@
   margin-bottom: 10px;
 }
 
-.infoText p {
-  color: var(--gray);
-}
 
-.stats {
-  display: flex;
-  gap: 40px;
-}
-
-.statItem {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--primary-red);
-  text-align: center;
-}
-
-.statItem small {
-  display: block;
-  font-size: 13px;
-  color: var(--gray);
-  font-weight: normal;
-}
 
 @media (max-width: 900px) {
   .heroContent {
