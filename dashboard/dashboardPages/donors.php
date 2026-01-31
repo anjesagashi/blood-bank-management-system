@@ -5,8 +5,8 @@
 <?php
 include "../config.php";
 include "../crud/user/userLogic.php";
- $db = new Database();
- $user = new User($db->getConnection());
+$db = new Database();
+$user = new User($db->getConnection());
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
     $username   = $_POST['username'];
@@ -37,22 +37,22 @@ if (isset($_GET['edit_id'])) {
     }
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_user'])) {
-    $id        = $_POST['id']; 
+    $id        = $_POST['id'];
     $fName     = $_POST['first_name'];
     $lName     = $_POST['last_name'];
     $email     = $_POST['email'];
     $birthdate = $_POST['birthdate'];
     $blood_id  = $_POST['blood_group_id'];
     if ($user->editDonor($id, $fName, $lName, $email, $birthdate, $blood_id)) {
-       header("Location: index.php?page=donors");
+        header("Location: index.php?page=donors");
     }
 }
 
 if (isset($_GET['delete_id'])) {
     $id_to_delete = $_GET['delete_id'];
-    
+
     if ($user->deleteUser($id_to_delete)) {
-         header("Location: index.php?page=donors");
+        header("Location: index.php?page=donors");
         exit();
     } else {
         echo "<script>alert('Fshirja dështoi!');</script>";
@@ -69,13 +69,13 @@ if (isset($_GET['delete_id'])) {
     <div class="statsContainer">
         <div class="statCard">
             <h3>Total Donors</h3>
-           
-            <p> <?php echo $totalDonors = $user->countTotalDonors()?></p>
+
+            <p> <?php echo $totalDonors = $user->countTotalDonors() ?></p>
         </div>
-        
+
         <div class="statCard">
             <h3>Administrators</h3>
-            <p><?php echo $totalAdmins = $user->countTotalAdmins()?></p>
+            <p><?php echo $totalAdmins = $user->countTotalAdmins() ?></p>
         </div>
     </div>
 
@@ -96,7 +96,7 @@ if (isset($_GET['delete_id'])) {
 
             if ($donors) {
                 foreach ($donors as $donor) {
-                    ?>
+            ?>
                     <tr>
                         <td><?php echo $donor['id']; ?></td>
                         <td><?php echo $donor['first_name'] . " " . $donor['last_name']; ?></td>
@@ -105,11 +105,11 @@ if (isset($_GET['delete_id'])) {
                         <td><?php echo $donor['blood_group']; ?></td>
                         <td class="actionsColumn">
 
-                            <button class="btn" onclick="openEditModal(<?php echo $donor['id']; ?>)"><img src="../images/svg/editIcon.svg" alt="Edit"></button> 
+                            <button class="btn" onclick="openEditModal(<?php echo $donor['id']; ?>)"><img src="../images/svg/editIcon.svg" alt="Edit"></button>
                             <button class="btn" onclick="confirmDelete(<?php echo $donor['id']; ?>)"><img src="../images/svg/deleteIcon.svg" alt="Delete"></button>
                         </td>
                     </tr>
-                    <?php
+            <?php
                 }
             } else {
                 echo "<tr><td colspan='6'>Nuk ka të dhëna në databazë.</td></tr>";
@@ -189,51 +189,51 @@ if (isset($_GET['delete_id'])) {
             <h3>Edit User Details</h3>
             <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditModal()" alt="Close">
         </div>
-       <form id="editUserForm" action="" method="POST" novalidate>
-       <input type="hidden" name="id" value="<?php echo $editDonorData['id'] ?? ''; ?>">
+        <form id="editUserForm" action="" method="POST" novalidate>
+            <input type="hidden" name="id" value="<?php echo $editDonorData['id'] ?? ''; ?>">
 
-    <div class="formGrid">
-        <div class="inputGroup">
-            <label>First Name</label>
-            <input type="text" id="editFirstName" name="first_name" value="<?php echo $editDonorData['first_name'] ?? ''; ?>" required>
-        </div>
+            <div class="formGrid">
+                <div class="inputGroup">
+                    <label>First Name</label>
+                    <input type="text" id="editFirstName" name="first_name" value="<?php echo $editDonorData['first_name'] ?? ''; ?>" required>
+                </div>
 
-        <div class="inputGroup">
-            <label>Last Name</label>
-            <input type="text" id="editLastName" name="last_name" value="<?php echo $editDonorData['last_name'] ?? ''; ?>" required>
-        </div>
+                <div class="inputGroup">
+                    <label>Last Name</label>
+                    <input type="text" id="editLastName" name="last_name" value="<?php echo $editDonorData['last_name'] ?? ''; ?>" required>
+                </div>
 
-        <div class="inputGroup">
-            <label>Email Address</label>
-            <input type="email" id="editEmail" name="email" value="<?php echo $editDonorData['email'] ?? ''; ?>" required>
-        </div>
+                <div class="inputGroup">
+                    <label>Email Address</label>
+                    <input type="email" id="editEmail" name="email" value="<?php echo $editDonorData['email'] ?? ''; ?>" required>
+                </div>
 
-        <div class="inputGroup">
-            <label>Birthdate</label>
-            <input type="date" id="editBirthdate" name="birthdate" value="<?php echo $editDonorData['birthdate'] ?? ''; ?>" required>
-        </div>
+                <div class="inputGroup">
+                    <label>Birthdate</label>
+                    <input type="date" id="editBirthdate" name="birthdate" value="<?php echo $editDonorData['birthdate'] ?? ''; ?>" required>
+                </div>
 
-        <div class="inputGroup">
-            <label>Blood Type</label>
-            <select id="editBloodType" name="blood_group_id" required>
-                <option value="1">A+</option>
-                <option value="2">A-</option>
-                <option value="3">B+</option>
-                <option value="4">B-</option>
-                <option value="5">O+</option>
-                <option value="6">O-</option>
-                <option value="7">AB+</option>
-                <option value="8">AB-</option>
-            </select>
-        </div>
+                <div class="inputGroup">
+                    <label>Blood Type</label>
+                    <select id="editBloodType" name="blood_group_id" required>
+                        <option value="1">A+</option>
+                        <option value="2">A-</option>
+                        <option value="3">B+</option>
+                        <option value="4">B-</option>
+                        <option value="5">O+</option>
+                        <option value="6">O-</option>
+                        <option value="7">AB+</option>
+                        <option value="8">AB-</option>
+                    </select>
+                </div>
 
-    </div>
+            </div>
 
-    <div class="modalFooter">
-        <button type="button" onclick="closeEditModal()" class="btnCancel">Cancel</button>
-        <button type="submit" name="update_user" class="btnSave">Update User</button>
-    </div>
-</form>
+            <div class="modalFooter">
+                <button type="button" onclick="closeEditModal()" class="btnCancel">Cancel</button>
+                <button type="submit" name="update_user" class="btnSave">Update User</button>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -5,12 +5,12 @@ include "../crud/donations/donationLogic.php";
 $db = new Database();
 $donationObj = new Donation($db->getConnection());
 
-$center_id = $_SESSION['user_id']; 
+$center_id = $_SESSION['user_id'];
 $appointments = $donationObj->getTodaysAppointmentsByCenter($center_id);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
     $donationObj->updateAppointmentStatus($_POST['appointment_id'], $_POST['new_status']);
-     header("Location: index.php?page=appointments");
+    header("Location: index.php?page=appointments");
     exit();
 }
 ?>
@@ -43,15 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
                         <form method="POST">
                             <td>
                                 <input type="hidden" name="appointment_id" value="<?php echo $app['id']; ?>">
-                               <select name="new_status" class="statusSelect">
-    <option value="2" selected>Approved / Awaiting Arrival</option>
-    
-    <option value="3">Completed</option>
-    
-    <option value="4">Cancelled</option>
-    
-    <option value="5">Rejected</option>
-</select>
+                                <select name="new_status" class="statusSelect">
+                                    <option value="2" selected>Approved / Awaiting Arrival</option>
+
+                                    <option value="3">Completed</option>
+
+                                    <option value="4">Cancelled</option>
+
+                                    <option value="5">Rejected</option>
+                                </select>
                             </td>
                             <td>
                                 <button type="submit" class="btnSave" name="update_status" class="btnUpdate">Update</button>
@@ -60,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="4" style="text-align:center;">No appointments scheduled for today.</td></tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;">No appointments scheduled for today.</td>
+                </tr>
             <?php endif; ?>
         </tbody>
     </table>

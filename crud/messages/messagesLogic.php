@@ -1,18 +1,21 @@
 <?php
-class Message {
+class Message
+{
     private $conn;
-     private $users_table = 'users';
+    private $users_table = 'users';
     private $table = "messages";
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function sendMessage($sender_id, $subject, $message_text) {
+    public function sendMessage($sender_id, $subject, $message_text)
+    {
         try {
             $sql = "INSERT INTO {$this->table} (sender_id, subject, message_text)
                     VALUES (:sender, :subject, :message)";
-            
+
             $stmt = $this->conn->prepare($sql);
             return $stmt->execute([
                 ':sender'  => $sender_id,
@@ -25,8 +28,9 @@ class Message {
         }
     }
 
-   public function getAllMessagesForAdmin() {
-    $sql = "SELECT m.id, m.sender_id, m.receiver_id, m.message_text, m.subject, m.is_read, m.created_at,
+    public function getAllMessagesForAdmin()
+    {
+        $sql = "SELECT m.id, m.sender_id, m.receiver_id, m.message_text, m.subject, m.is_read, m.created_at,
                    d.first_name, d.last_name, u.email
             FROM {$this->table} m
             INNER JOIN users u ON m.sender_id = u.id
@@ -36,61 +40,63 @@ class Message {
             )
             ORDER BY m.created_at DESC";
 
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    public function getMessageById($id) {
-    $sql = "SELECT m.id, m.sender_id, m.receiver_id, m.subject, m.message_text, m.is_read, m.created_at,
+    public function getMessageById($id)
+    {
+        $sql = "SELECT m.id, m.sender_id, m.receiver_id, m.subject, m.message_text, m.is_read, m.created_at,
                    d.first_name, d.last_name, u.email
             FROM messages m
             INNER JOIN users u ON m.sender_id = u.id
             LEFT JOIN donors d ON u.id = d.id
             WHERE m.id = :id";
 
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-public function sendReply($sender_id, $receiver_id, $subject, $message_text) {
-    try {
-        $sql = "INSERT INTO {$this->table} (sender_id, receiver_id, subject, message_text, is_read) 
-                VALUES (:sender_id, :receiver_id, :subject, :message_text, 0)";
-        
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':sender_id', $sender_id);
-        $stmt->bindParam(':receiver_id', $receiver_id);
-        $stmt->bindParam(':subject', $subject);
-        $stmt->bindParam(':message_text', $message_text);
-        
-        return $stmt->execute();
-    } catch (PDOException $e) {
-        error_log("Reply Error: " . $e->getMessage());
-        return false;
-    }
-}
-
-public function getMessagesByReceiverId($userId) {
-    $sql = "SELECT * FROM {$this->table} WHERE receiver_id = :userId ORDER BY created_at DESC";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-    public function deleteMessage($id) {
-    try {
-        $sql = "DELETE FROM {$this->table} WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
-    } catch (PDOException $e) {
-        error_log("Delete Message Error: " . $e->getMessage());
-        return false;
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function sendReply($sender_id, $receiver_id, $subject, $message_text)
+    {
+        try {
+            $sql = "INSERT INTO {$this->table} (sender_id, receiver_id, subject, message_text, is_read) 
+                VALUES (:sender_id, :receiver_id, :subject, :message_text, 0)";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':sender_id', $sender_id);
+            $stmt->bindParam(':receiver_id', $receiver_id);
+            $stmt->bindParam(':subject', $subject);
+            $stmt->bindParam(':message_text', $message_text);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Reply Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getMessagesByReceiverId($userId)
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE receiver_id = :userId ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function deleteMessage($id)
+    {
+        try {
+            $sql = "DELETE FROM {$this->table} WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Delete Message Error: " . $e->getMessage());
+            return false;
+        }
     }
 }
-
-}
-?>

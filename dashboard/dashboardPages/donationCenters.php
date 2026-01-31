@@ -4,24 +4,25 @@
         flex-direction: column;
         gap: 40px;
     }
-    .headerContainer{
+
+    .headerContainer {
         display: flex;
-       justify-content: space-between;
+        justify-content: space-between;
     }
 </style>
 
 <?php
 include "../config.php";
 include "../crud/user/userLogic.php";
- $db = new Database();
- $user = new User($db->getConnection());
+$db = new Database();
+$user = new User($db->getConnection());
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_center'])) {
 
     $role    = $_POST['role_id'];
     $username   = $_POST['username'];
     $email      = $_POST['email'];
     $password   = $_POST['password'];
-    
+
     $name = $_POST['center_name'];
     $city  = $_POST['city'];
     $phone  = $_POST['phone'];
@@ -68,15 +69,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_center'])) {
 
 if (isset($_GET['delete_id'])) {
     $id_to_delete = $_GET['delete_id'];
-    
+
     if ($user->deleteUser($id_to_delete)) {
-         header("Location: index.php?page=donationCenters");
+        header("Location: index.php?page=donationCenters");
         exit();
     } else {
         echo "<script>alert('Delete failed!');</script>";
     }
 }
- ?>
+?>
 <div class="bloodCenterContainer">
     <div class="headerContainer">
         <h2>Manage Blood Centers</h2>
@@ -93,33 +94,33 @@ if (isset($_GET['delete_id'])) {
             </tr>
         </thead>
         <tbody>
-            <tbody>
-    <?php
-    $centers = $user->getAllCenters();
-    if ($centers) {
-        foreach ($centers as $center) {
-            ?>
-            <tr>
-                <td><?php echo $center['center_name']; ?></td>
-                <td><?php echo $center['city']; ?></td>
-                <td><?php echo $center['phone_number']; ?></td>
-                <td class="actionsColumn">
-                    <button class="btn" onclick="openEditCenterModal(<?php echo $center['id']; ?>)">
-                        <img src="../images/svg/editIcon.svg" alt="Edit">
-                    </button>
-                    <button class="btn" onclick="confirmDelete(<?php echo $center['id']; ?>)">
-                        <img src="../images/svg/deleteIcon.svg" alt="Delete">
-                    </button>
-                </td>
-            </tr>
+        <tbody>
             <?php
-        }
-    } else {
-        echo "<tr><td colspan='4'>There is no center registered.</td></tr>";
-    }
-    ?>
-</tbody>
-           
+            $centers = $user->getAllCenters();
+            if ($centers) {
+                foreach ($centers as $center) {
+            ?>
+                    <tr>
+                        <td><?php echo $center['center_name']; ?></td>
+                        <td><?php echo $center['city']; ?></td>
+                        <td><?php echo $center['phone_number']; ?></td>
+                        <td class="actionsColumn">
+                            <button class="btn" onclick="openEditCenterModal(<?php echo $center['id']; ?>)">
+                                <img src="../images/svg/editIcon.svg" alt="Edit">
+                            </button>
+                            <button class="btn" onclick="confirmDelete(<?php echo $center['id']; ?>)">
+                                <img src="../images/svg/deleteIcon.svg" alt="Delete">
+                            </button>
+                        </td>
+                    </tr>
+            <?php
+                }
+            } else {
+                echo "<tr><td colspan='4'>There is no center registered.</td></tr>";
+            }
+            ?>
+        </tbody>
+
         </tbody>
     </table>
 </div>
@@ -133,15 +134,15 @@ if (isset($_GET['delete_id'])) {
         <form id="centerForm" action="" method="POST" novalidate>
             <div class="formGrid">
                 <input type="hidden" name="role_id" value="3">
-             <div class="inputGroup">
-                        <label>Username</label>
-                        <input type="text" name="username" value="username" placeholder="username">
-                    </div>
+                <div class="inputGroup">
+                    <label>Username</label>
+                    <input type="text" name="username" value="username" placeholder="username">
+                </div>
 
-                 <div class="inputGroup">
-                        <label>Email Address</label>
-                        <input type="email" name="email"  placeholder="Email Address">
-                    </div>
+                <div class="inputGroup">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Email Address">
+                </div>
                 <div class="inputGroup">
                     <label>Center Name</label>
                     <input type="text" id="name" name="center_name" placeholder="Center Name" required>
@@ -166,10 +167,10 @@ if (isset($_GET['delete_id'])) {
                     <label>Image src (src only)</label>
                     <input type="text" name="img" placeholder="Attach image source">
                 </div>
-                 <div class="inputGroup">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Password">
-                    </div>
+                <div class="inputGroup">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
             </div>
             <div class="modalFooter">
                 <button type="button" onclick="closeCenterModal()" class="btnCancel">Cancel</button>
@@ -179,24 +180,24 @@ if (isset($_GET['delete_id'])) {
     </div>
 </div>
 <!-- Edit Center Modal -->
- <div id="editCenterModal" class="modal" style="display: <?php echo isset($_GET['edit_id']) ? 'block' : 'none'; ?>;">
+<div id="editCenterModal" class="modal" style="display: <?php echo isset($_GET['edit_id']) ? 'block' : 'none'; ?>;">
     <div class="modalContent">
         <div class="modalHeader">
             <h3>Edit Blood Center</h3>
             <img src="../images/svg/closeIcon.svg" class="closeBtn" onclick="closeEditCenterModal()" alt="Close Icon">
         </div>
-        <form id="editCenterForm" action="" method="POST"  novalidate>
+        <form id="editCenterForm" action="" method="POST" novalidate>
             <div class="formGrid">
                 <input type="hidden" name="id" value="<?php echo $centerData['id'] ?? ''; ?>">
-             <div class="inputGroup">
-                        <label>Username</label>
-                        <input type="text" name="username" value="<?php echo $centerData['username'] ?? ''; ?>" placeholder="username">
-                    </div>
+                <div class="inputGroup">
+                    <label>Username</label>
+                    <input type="text" name="username" value="<?php echo $centerData['username'] ?? ''; ?>" placeholder="username">
+                </div>
 
-                 <div class="inputGroup">
-                        <label>Email Address</label>
-                        <input type="email" name="email" value="<?php echo $centerData['email'] ?? ''; ?>" placeholder="Email Address">
-                    </div>
+                <div class="inputGroup">
+                    <label>Email Address</label>
+                    <input type="email" name="email" value="<?php echo $centerData['email'] ?? ''; ?>" placeholder="Email Address">
+                </div>
                 <div class="inputGroup">
                     <label>Center Name</label>
                     <input type="text" id="name" name="center_name" value="<?php echo $centerData['center_name'] ?? ''; ?>" placeholder="Center Name" required>
@@ -211,11 +212,11 @@ if (isset($_GET['delete_id'])) {
                 </div>
                 <div class="inputGroup">
                     <label>Description (Bio)</label>
-                    <textarea id="desc" rows="3" name="desc" ><?php echo $centerData['description'] ?? ''; ?></textarea>
+                    <textarea id="desc" rows="3" name="desc"><?php echo $centerData['description'] ?? ''; ?></textarea>
                 </div>
                 <div class="inputGroup">
                     <label>Google Maps Iframe Link (src only)</label>
-                    <input type="text" name="map" value="<?php echo $centerData['map_link'] ?? '';?>" >
+                    <input type="text" name="map" value="<?php echo $centerData['map_link'] ?? ''; ?>">
                 </div>
                 <div class="inputGroup">
                     <label>Image src (src only)</label>
@@ -230,7 +231,7 @@ if (isset($_GET['delete_id'])) {
     </div>
 </div>
 <script>
-   <?php 
-   include "assets/js/donationCenters.js"
-   ?>
+    <?php
+    include "assets/js/donationCenters.js"
+    ?>
 </script>

@@ -9,7 +9,7 @@ include_once "../crud/user/userLogic.php";
 $db = new Database();
 $user = new User($db->getConnection());
 
-$centerId = $_SESSION['user_id']; 
+$centerId = $_SESSION['user_id'];
 
 $centerData = $user->getCenterById($centerId);
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editCenterProfile'])) 
 
     if ($user->updateCenterProfile($centerId, $username, $email, $centerName, $city, $phone, $description, $mapLink, $newPass)) {
         echo "<p style='color:green; text-align:center;'>Profile updated successfully!</p>";
-        $centerData = $user->getCenterById($centerId); 
+        $centerData = $user->getCenterById($centerId);
     } else {
         echo "<p style='color:red; text-align:center;'>Something went wrong during update.</p>";
     }
@@ -55,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editCenterProfile'])) 
                         <label>New Password (leave blank to keep current)</label>
                         <input type="password" name="password" placeholder="New password">
                     </div>
-                
 
-               
+
+
                     <div class="inputGroup fullWidth">
                         <label>Center Name</label>
                         <input type="text" name="center_name" value="<?php echo $centerData['center_name'] ?? ''; ?>" required>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editCenterProfile'])) 
                         <textarea name="description" rows="4" style="width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 10px;"><?php echo $centerData['description'] ?? ''; ?></textarea>
                     </div>
                 </div>
-                
+
                 <button type="submit" name="editCenterProfile" class="btnUpdate">Save Center Changes</button>
             </form>
         </div>

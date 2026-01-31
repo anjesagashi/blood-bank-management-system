@@ -63,7 +63,7 @@ loginForm.addEventListener("submit", (e) => {
   }
 
   if (!valid) {
-    e.preventDefault(); // ❗ vetëm kur ka gabime
+    e.preventDefault(); 
   }
 });
 
@@ -128,13 +128,13 @@ registerForm.addEventListener("submit", (e) => {
     showSuccess(regPassword);
   }
 
-  // ❗ Nëse ka gabime → ndalo submit
+ 
   if (!valid) {
     e.preventDefault();
   }
 });
 
-/* Birthdate max 16 vjet */
+
 const today = new Date();
 today.setFullYear(today.getFullYear() - 16);
 regbirthdate.max = today.toISOString().split("T")[0];

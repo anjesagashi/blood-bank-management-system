@@ -13,10 +13,10 @@ $adminId = $_SESSION['user_id'];
 $adminData = $user->getAdminById($adminId);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editAdminProfile'])) {
     $email = trim($_POST['email']);
-    $username = trim($_POST['username']); 
+    $username = trim($_POST['username']);
     $newPass = $_POST['password'];
 
-   
+
     if ($user->updateAdminProfile($adminId, $username, $email, $newPass)) {
         echo "<p style='color:green; text-align:center;'>Profile updated!</p>";
         $adminData = $user->getDonorById($adminId);
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['createAdmin'])) {
                         <label>Email Address</label>
                         <input type="email" name="email" value="<?php echo $adminData['email'] ?? ''; ?>">
                     </div>
-                     <div class="inputGroup fullWidth">
+                    <div class="inputGroup fullWidth">
                         <label>Username</label>
                         <input type="text" name="username" value="<?php echo $adminData['username'] ?? ''; ?>" placeholder="Enter current password">
                     </div>
@@ -67,22 +67,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['createAdmin'])) {
                         <label>New Password</label>
                         <input type="password" name="password" placeholder="New Password">
                     </div>
-                   
+
                 </div>
                 <button type="submit" name="editAdminProfile" class="btnUpdate">Save My Changes</button>
             </form>
         </div>
 
-       
+
 
         <div class="formCard createAdminCard">
             <h3>Add New Administrator</h3>
-            <p >Create a new account with full administrative access.</p>
+            <p>Create a new account with full administrative access.</p>
             <form id="createNewAdminForm" action="" method="POST" novalidate>
                 <div class="formGrid">
-                     <div class="inputGroup fullWidth">
+                    <div class="inputGroup fullWidth">
                         <label>New Admin Username</label>
-                        <input type="text"  name="new_admin_username" placeholder="username123">
+                        <input type="text" name="new_admin_username" placeholder="username123">
                     </div>
                     <div class="inputGroup fullWidth">
                         <label>New Admin Email</label>
@@ -96,6 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['createAdmin'])) {
                 <button type="submit" name="createAdmin" class="btnUpdate">Create Admin Account</button>
             </form>
         </div>
-       
+
     </div>
 </div>

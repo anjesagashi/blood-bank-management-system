@@ -65,45 +65,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['approve_btn'])) {
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr><td colspan="5" style="text-align:center;">No pending requests found.</td></tr>
+                    <tr>
+                        <td colspan="5" style="text-align:center;">No pending requests found.</td>
+                    </tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
 
-   <div class="card" style="margin-top: 30px;">
-    <div class="cardHeader">
-        <h3>Donation History</h3>
-    </div>
-    <table class="styledTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Donor Name</th>
-                <th>Center</th>
-                <th>Scheduled Date</th>
-                <th>Amount (ml)</th>
-                <th>Status</th> </tr>
-        </thead>
-        <tbody>
-            <?php if (count($historyRecords) > 0): ?>
-                <?php foreach ($historyRecords as $record): ?>
+    <div class="card" style="margin-top: 30px;">
+        <div class="cardHeader">
+            <h3>Donation History</h3>
+        </div>
+        <table class="styledTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Donor Name</th>
+                    <th>Center</th>
+                    <th>Scheduled Date</th>
+                    <th>Amount (ml)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($historyRecords) > 0): ?>
+                    <?php foreach ($historyRecords as $record): ?>
+                        <tr>
+                            <td>#<?php echo $record['id']; ?></td>
+                            <td><?php echo $record['first_name'] . " " . $record['last_name']; ?></td>
+                            <td><?php echo $record['center_name']; ?></td>
+                            <td><?php echo $record['scheduled_date']; ?></td>
+                            <td><?php echo $record['amount_ml']; ?> ml</td>
+                            <td>
+                                <span class="statusBadge <?php echo strtolower($record['status_name']); ?>">
+                                    <?php echo $record['status_name']; ?>
+                                </span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <td>#<?php echo $record['id']; ?></td>
-                        <td><?php echo $record['first_name'] . " " . $record['last_name']; ?></td>
-                        <td><?php echo $record['center_name']; ?></td>
-                        <td><?php echo $record['scheduled_date']; ?></td>
-                        <td><?php echo $record['amount_ml']; ?> ml</td>
-                        <td>
-                            <span class="statusBadge <?php echo strtolower($record['status_name']); ?>">
-                                <?php echo $record['status_name']; ?>
-                            </span>
-                        </td>
+                        <td colspan="6" style="text-align:center;">No history records found.</td>
                     </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="6" style="text-align:center;">No history records found.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
