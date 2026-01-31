@@ -15,6 +15,7 @@ $role_id = $_SESSION['role_id'] ?? 0; // 1 = admin, 3 = center staff
                 <a href="index.php?page=bloodRequests" class="<?php echo ($page == 'bloodRequests') ? 'active' : ''; ?>">Blood Requests</a>
                 <a href="index.php?page=bloodInventory" class="<?php echo ($page == 'bloodInventory') ? 'active' : ''; ?>">Blood Inventory</a>
                 <a href="index.php?page=messages" class="<?php echo ($page == 'messages') ? 'active' : ''; ?>">Messages</a>
+                <a href="../pages/homePage/homePage.php">Back to HomePage</a>
             <?php elseif($role_id == 3): ?>
                 
                 <a href="index.php?page=appointments" class="<?php echo ($page == 'appointments') ? 'active' : ''; ?>">Appointments</a>

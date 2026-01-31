@@ -1,0 +1,137 @@
+.donateNowSection {
+  background: #faf7f2;
+  padding-inline: var(--padding-inline);
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+.donateContainer {
+  padding-inline: var(--padding-inline);
+  max-width: var(--max-width);
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.donateHeader {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.donateHeader h1 {
+  color: #6d1417;
+  font-size: 30px;
+}
+
+.donateHeader p {
+  color: #666;
+}
+
+.donateCard {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.donateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.formGroup select,
+.formGroup input {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.formGroup select:focus,
+.formGroup input:focus {
+  outline: none;
+  border-color: #6d1417;
+}
+
+.hint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.btnDonate {
+  padding: 14px;
+  background: #6d1417;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btnDonate:hover {
+  background: #8a1c20;
+}
+
+@media (max-width: 768px) {
+  .donateContainer {
+    margin: 40px 15px;
+  }
+
+  .donateHeader h1 {
+    font-size: 26px;
+  }
+
+  .donateCard {
+    padding: 22px;
+  }
+
+  .btnDonate {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .donateHeader h1 {
+    font-size: 22px;
+  }
+
+  .donateHeader p {
+    font-size: 14px;
+  }
+
+  .donateCard {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .formGroup label {
+    font-size: 14px;
+  }
+
+  .formGroup select,
+  .formGroup input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btnDonate {
+    font-size: 14px;
+    padding: 11px;
+    border-radius: 8px;
+  }
+}
