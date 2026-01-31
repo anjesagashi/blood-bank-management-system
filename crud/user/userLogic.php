@@ -141,6 +141,19 @@ public function getCenterById($id) {
         return null;
     }
 }
+public function getAdminById($id) {
+    try {
+        $sql = "SELECT id, username, email, role_id FROM users WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error in getAdminById: " . $e->getMessage());
+        return false;
+    }
+}
 public function editDonor($id, $fName, $lName, $email, $birthdate, $blood_id) {
     try {
         $sql1 = "UPDATE users SET email = :email WHERE id = :id";
@@ -205,6 +218,75 @@ public function editProfile($id, $fName, $lName, $email, $birthdate, $blood_id, 
     }
 }
 
+public function updateAdminProfile($id, $username, $email, $password = null) {
+    try {
+        $query = "UPDATE users SET username = :username, email = :email";
+        $params = [
+            ':username' => $username,
+            ':email' => $email,
+            ':id' => $id
+        ];
+
+        if (!empty($password)) {
+            $query .= ", password = :password";
+            $params[':password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $query .= " WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute($params);
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+public function updateCenterProfile($id, $username, $email, $center_name, $city, $phone, $description, $map_link, $password = null) {
+    try {
+        $this->conn->beginTransaction();
+
+    
+        $query1 = "UPDATE users SET username = :username, email = :email";
+        if (!empty($password)) {
+            $query1 .= ", password = :password";
+        }
+        $query1 .= " WHERE id = :id";
+
+        $stmt1 = $this->conn->prepare($query1);
+        $params1 = [
+            ':username' => $username,
+            ':email' => $email,
+            ':id' => $id
+        ];
+        if (!empty($password)) {
+            $params1[':password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+        $stmt1->execute($params1);
+
+        $query2 = "UPDATE blood_centers SET 
+                    center_name = :cname, 
+                    city = :city, 
+                    phone_number = :phone, 
+                    description = :desc, 
+                    map_link = :map 
+                   WHERE id = :id";
+        
+        $stmt2 = $this->conn->prepare($query2);
+        $stmt2->execute([
+            ':cname' => $center_name,
+            ':city'  => $city,
+            ':phone' => $phone,
+            ':desc'  => $description,
+            ':map'   => $map_link,
+            ':id'    => $id
+        ]);
+
+        $this->conn->commit();
+        return true;
+    } catch (Exception $e) {
+        $this->conn->rollBack();
+        return false;
+    }
+}
 public function editCenter($id, $username, $email, $name, $city, $phone, $desc, $map, $img) {
      try {
         $query1 = "UPDATE {$this->users_table} SET username = :username, email = :email WHERE id = :id";

@@ -80,17 +80,16 @@ if (isset($_POST['update_profile'])) {
           <div class="row">
             <div class="inputBox">
               <label>Blood Group</label>
-              <select  name="blood_group_id" value="<?php echo $userData['blood_group_id'] ?? ''; ?>" disabled>
-                
-                <option value="1">A+</option>
-                <option value="2">A-</option>
-                <option value="3">B+</option>
-                <option value="4">B-</option>
-                <option value="5">O+</option>
-                <option value="6">O-</option>
-                <option value="7">AB+</option>
-                <option value="8">AB-</option>
-              </select>
+              <select name="blood_group_id" disabled>
+    <option value="1" <?php echo ($userData['blood_group_id'] == 1) ? 'selected' : ''; ?>>A+</option>
+    <option value="2" <?php echo ($userData['blood_group_id'] == 2) ? 'selected' : ''; ?>>A-</option>
+    <option value="3" <?php echo ($userData['blood_group_id'] == 3) ? 'selected' : ''; ?>>B+</option>
+    <option value="4" <?php echo ($userData['blood_group_id'] == 4) ? 'selected' : ''; ?>>B-</option>
+    <option value="5" <?php echo ($userData['blood_group_id'] == 5) ? 'selected' : ''; ?>>O+</option>
+    <option value="6" <?php echo ($userData['blood_group_id'] == 6) ? 'selected' : ''; ?>>O-</option>
+    <option value="7" <?php echo ($userData['blood_group_id'] == 7) ? 'selected' : ''; ?>>AB+</option>
+    <option value="8" <?php echo ($userData['blood_group_id'] == 8) ? 'selected' : ''; ?>>AB-</option>
+</select>
             </div>
 
             <div class="inputBox">

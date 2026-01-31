@@ -8,6 +8,21 @@ include_once "../crud/user/userLogic.php";
 $db = new Database();
 $user = new User($db->getConnection());
 
+$adminId = $_SESSION['user_id'];
+
+$adminData = $user->getAdminById($adminId);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editAdminProfile'])) {
+    $email = trim($_POST['email']);
+    $username = trim($_POST['username']); 
+    $newPass = $_POST['password'];
+
+   
+    if ($user->updateAdminProfile($adminId, $username, $email, $newPass)) {
+        echo "<p style='color:green; text-align:center;'>Profile updated!</p>";
+        $adminData = $user->getDonorById($adminId);
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['createAdmin'])) {
     $username = trim($_POST['new_admin_username']);
     $email    = trim($_POST['new_admin_email']);
@@ -38,26 +53,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['createAdmin'])) {
     <div class="profileFormArea">
         <div class="formCard">
             <h3>My Personal Information</h3>
-            <form id="personalInfoForm">
+            <form id="personalInfoForm" action="" method="POST">
                 <div class="formGrid ">
                     <div class="inputGroup fullWidth">
                         <label>Email Address</label>
-                        <input type="email" name="email" value="admin@example.com">
+                        <input type="email" name="email" value="<?php echo $adminData['email'] ?? ''; ?>">
                     </div>
                      <div class="inputGroup fullWidth">
-                        <label>Current Password</label>
-                        <input type="password" name="current_pass" placeholder="Enter current password">
+                        <label>Username</label>
+                        <input type="text" name="username" value="<?php echo $adminData['username'] ?? ''; ?>" placeholder="Enter current password">
                     </div>
                     <div class="inputGroup fullWidth">
                         <label>New Password</label>
-                        <input type="password" name="new_pass" placeholder="New Password">
+                        <input type="password" name="password" placeholder="New Password">
                     </div>
-                    <div class="inputGroup fullWidth">
-                        <label>Confirm New Password</label>
-                        <input type="password" name="confirm_pass" placeholder="Confirm Password">
-                    </div>
+                   
                 </div>
-                <button type="submit" class="btnUpdate">Save My Changes</button>
+                <button type="submit" name="editAdminProfile" class="btnUpdate">Save My Changes</button>
             </form>
         </div>
 

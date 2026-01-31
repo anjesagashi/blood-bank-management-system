@@ -12,11 +12,8 @@ include_once "../../crud/messages/messagesLogic.php";
 $db = new Database();
 $messageObj = new Message($db->getConnection());
 
-// Marrim ID-në e përdoruesit të loguar nga Session
 $userId = $_SESSION['user_id'];
 
-// Krijojmë një metodë të re në Logic për të marrë mesazhet e një përdoruesi specifik
-// Nëse nuk e ke krijuar ende, përdor getAllMessagesForUser($userId)
 $messages = $messageObj->getMessagesByReceiverId($userId); 
 
 $selectedId = $_GET['notif_id'] ?? null;
@@ -89,7 +86,7 @@ if ($selectedId) {
                     </div>
                 <?php else: ?>
                     <div style="padding: 40px; text-align: center;">
-                        <img src="../../images/svg/no-notif.svg" alt="" style="width: 100px; opacity: 0.5;">
+    
                         <h3>Select a notification to read</h3>
                     </div>
                 <?php endif; ?>

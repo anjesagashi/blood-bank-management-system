@@ -24,12 +24,21 @@ $role_id = $_SESSION['role_id'] ?? 0; // 1 = admin, 3 = center staff
         </ul>
     </div>
 
-    <a href="index.php?page=profile" class="profileContainer">
+    <?php if($role_id == 1): ?>
+    <a href="index.php?page=adminProfile" class="profileContainer">
         <img src="../images/profilePic.png" class="profilePic" alt="Profile Image">
         <div class="adminInfo">
             <h5>Profile</h5>
             <p><?php echo   $_SESSION['user_email']?></p>
-        </div>
-       
+        </div>  
     </a>
+     <?php elseif($role_id == 3): ?>
+        <a href="index.php?page=centerProfile" class="profileContainer">
+        <img src="../images/profilePic.png" class="profilePic" alt="Profile Image">
+        <div class="adminInfo">
+            <h5>Profile</h5>
+            <p><?php echo   $_SESSION['user_email']?></p>
+        </div>  
+    </a>
+    <?php endif; ?>
 </div>
