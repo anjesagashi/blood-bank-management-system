@@ -169,6 +169,42 @@ public function editDonor($id, $fName, $lName, $email, $birthdate, $blood_id) {
         die("Gabim gjatë editimit: " . $e->getMessage());
     }
 }
+public function editProfile($id, $fName, $lName, $email, $birthdate, $blood_id, $password = null) {
+    try {
+        
+        $sql1 = "UPDATE users SET email = :email WHERE id = :id";
+        $stmt1 = $this->conn->prepare($sql1);
+        $stmt1->execute([':email' => $email, ':id' => $id]);
+
+        if (!empty($password)) {
+            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+            $sqlPass = "UPDATE users SET password = :pass WHERE id = :id";
+            $stmtPass = $this->conn->prepare($sqlPass);
+            $stmtPass->execute([':pass' => $hashedPass, ':id' => $id]);
+        }
+
+       
+        $sql2 = "UPDATE donors SET 
+                    first_name = :fname, 
+                    last_name = :lname, 
+                    birthdate = :bdate, 
+                    blood_group_id = :bgroup 
+                 WHERE id = :id";
+        $stmt2 = $this->conn->prepare($sql2);
+        
+        return $stmt2->execute([
+            ':fname'  => $fName,
+            ':lname'  => $lName,
+            ':bdate'  => $birthdate,
+            ':bgroup' => $blood_id,
+            ':id'     => $id
+        ]);
+
+    } catch (PDOException $e) {
+        die("Gabim: " . $e->getMessage());
+    }
+}
+
 public function editCenter($id, $username, $email, $name, $city, $phone, $desc, $map, $img) {
      try {
         $query1 = "UPDATE {$this->users_table} SET username = :username, email = :email WHERE id = :id";

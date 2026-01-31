@@ -20,25 +20,21 @@ $isUser = isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2;
         </nav>
 
         <div class="headerActions">
-          <div class="searchContainer">
-            <input
-              type="text"
-              placeholder="Search Center"
-              class="searchInput"
-            />
-            <img
-              src="../../images/svg/searchIcon1.svg"
-              alt="Search Icon"
-              class="searchIcon"
-            />
-          </div>
+         
 
          <?php if($isLoggedIn && $isUser): ?>
         <a href="../../pages/notificationsPage/notificationsPage.php" class="notificationContainer">
             <img src="../../images/svg/bellIcon.svg" alt="Notifications" class="notificationIcon" />
             </a>
+
+            <a href="../../pages/profilePage/profilePage.php" class="notificationContainer">
+            <img src="../../images/svg/profile.svg" alt="Profile" class="notificationIcon" style="width: 30px; height: 30px;" />
+        </a>
     <?php endif; ?>
           
+    
+  
+
           <?php if($isLoggedIn): ?>
           <a href="../../pages/loginPage/logout.php" class="loginButton">
             Logout

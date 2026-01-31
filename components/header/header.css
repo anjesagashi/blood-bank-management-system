@@ -53,41 +53,9 @@
   align-items: center;
   gap: 15px;
 }
-.searchContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.searchInput {
-  width: 0;
-  opacity: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  height: 35px;
-  border-radius: 20px;
-  background-color: white;
-  color: black;
-  transition: all 0.3s ease;
-  padding-right: 35px;
-}
-.searchIcon {
-  position: absolute;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-.searchContainer:hover .searchInput {
-  width: 200px;
-  opacity: 1;
-  padding: 0 40px 0 10px;
-}
-.searchInput:focus {
-  width: 200px;
-  opacity: 1;
-  padding: 0 40px 0 10px;
-}
+
+
+
 .notificationContainer {
   position: relative;
   cursor: pointer;
@@ -112,12 +80,7 @@
   display: none;
 }
 @media (max-width: 1024px) {
-  .searchContainer:hover .searchInput {
-    width: 150px;
-  }
-  .searchInput:focus {
-    width: 150px;
-  }
+ 
   .navigationBar a {
     font-size: 14px;
   }
@@ -151,21 +114,13 @@
     display: block;
     cursor: pointer;
   }
-  .searchContainer:hover .searchInput {
-    width: 150px;
-  }
-  .searchInput:focus {
-    width: 150px;
-  }
+ 
+
 }
 @media (max-width: 500px) {
   .logoContainer h1 {
     font-size: 22px;
   }
-  .searchContainer:hover .searchInput {
-    width: 100px;
-  }
-  .searchInput:focus {
-    width: 100px;
-  }
+ 
+
 }
