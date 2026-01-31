@@ -35,7 +35,14 @@ include "../../crud/user/userLogic.php";
           <p>Join our mission to help people in need</p>
          
           <div class="homeBtns">
-            <a href="#" class="primaryBtn">Donate now</a>
+            <?php 
+    
+    if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 2): 
+    ?>
+        <a href="../../pages/donateNow/donateNowPage.php" class="primaryBtn">Donate now</a>
+    <?php endif; ?>
+
+            
   <?php 
     
     if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1): 

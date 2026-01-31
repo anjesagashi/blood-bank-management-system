@@ -67,7 +67,7 @@ if (!$center) {
         <?php echo !empty($center['description']) ? $center['description'] : 'No description available for this center.'; ?>
       </p>
 
-      <a href="../donationForm/donationForm.php?center_id=<?php echo $center['id']; ?>" class="donateBtn">
+      <a href="../donateNow/donateNowPage.php" class="donateBtn">
         Donate Blood
       </a>
     </div>
