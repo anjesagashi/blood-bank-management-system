@@ -1,7 +1,17 @@
+<?php
+include "../config.php";
+include "../crud/inventory/inventoryLogic.php";
+$db = new Database();
+$inventoryObj = new Inventory($db->getConnection());
+
+$stats = $inventoryObj->getInventoryStats();
+$inventoryData = $inventoryObj->getFullInventory();
+?>
+
 <style>
-    <?php 
-    include "assets/css/bloodInventory.css"?>
+    <?php include "assets/css/bloodInventory.css"; ?>
 </style>
+
 <div class="inventoryWrapper">
     <div class="inventoryHeader">
         <h2>Blood Inventory Management</h2>
@@ -10,15 +20,15 @@
     <div class="inventoryStats">
         <div class="invStatCard">
             <h4>Total Volume</h4>
-            <p>18,450 <span>ml</span></p>
+            <p><?php echo $stats['total_volume'] ?? 0; ?> <span>ml</span></p>
         </div>
         <div class="invStatCard warning">
             <h4>Low Stock Alerts</h4>
-            <p>3 <span>Groups</span></p>
+            <p><?php echo $stats['low_stock_count'] ?? 0; ?> <span>Groups</span></p>
         </div>
         <div class="invStatCard info">
             <h4>Total Centers</h4>
-            <p>7 <span>Active</span></p>
+            <p><?php echo $stats['total_centers'] ?? 0; ?> <span>Active</span></p>
         </div>
     </div>
 
@@ -32,34 +42,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Prishtina</td>
-                   
-                    <td>
-                        <select class="inlineSelect bloodType">
-                            <option value="A+">A+</option>
-                            <option value="A-" selected>A-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="inlineInput" value="4500">
-                    </td>
-                </tr>
-
-                <tr>
-                   <td>Gjilan</td>
-                    <td>
-                        <select class="inlineSelect bloodType">
-                            <option value="O-">O-</option>
-                            <option value="AB-" selected>AB-</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="inlineInput" value="250">
-                    </td>
-                </tr>
+                <?php if (!empty($inventoryData)): ?>
+                    <?php foreach ($inventoryData as $row): ?>
+                        <tr>
+                            <td><?php echo $row['center_name']; ?></td>
+                            <td>
+                                <span class="bloodBadge"><?php echo $row['group_name']; ?></span>
+                            </td>
+                            <td>
+                                <input type="text" class="inlineInput" value="<?php echo $row['quantity_ml']; ?>" readonly>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No blood inventory records found.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
