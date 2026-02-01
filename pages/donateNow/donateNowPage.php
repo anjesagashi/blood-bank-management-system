@@ -5,6 +5,11 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../../pages/loginPage/loginPage.php");
     exit();
 }
+$role_id = $_SESSION['role_id'];
+if ( $role_id!=2) {
+    header("Location: ../../dashboard/index.php");
+    exit();
+}
 
 include "../../config.php";
 include "../../crud/donations/donationLogic.php";
