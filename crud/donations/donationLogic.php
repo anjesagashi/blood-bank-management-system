@@ -152,4 +152,19 @@ class Donation
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function countCompletedDonations()
+    {
+        try {
+            $sql = "SELECT COUNT(*) as total FROM " . $this->table_name . " WHERE status_id = 3";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $row['total'] ?? 0;
+        } catch (PDOException $e) {
+            error_log("Error counting donations: " . $e->getMessage());
+            return 0;
+        }
+    }
 }

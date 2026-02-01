@@ -7,8 +7,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 include "../../config.php";
 include "../../crud/user/userLogic.php";
+include "../../crud/donations/donationLogic.php";
 $db = new Database();
 $user = new User($db->getConnection());
+$donation = new Donation($db->getConnection());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,8 +70,8 @@ $user = new User($db->getConnection());
 
     <custom-stats
       src="../../images/svg/vitalSigns.svg"
-      value="850"
-      description="Lives Saved"></custom-stats>
+      value="<?php echo $completedDonations = $donation->countCompletedDonations() ?>"
+      description="Cmpleted Donations"></custom-stats>
 
     <custom-stats
       src="../../images/svg/hospital.svg"
